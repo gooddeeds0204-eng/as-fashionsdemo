@@ -15,7 +15,9 @@ import {
   ChevronRight,
   ShieldCheck,
   RotateCcw,
-  Truck
+  Truck,
+  Zap,
+  Tag,
 } from "lucide-react";
 
 interface Product {
@@ -49,7 +51,7 @@ const PRODUCTS: Product[] = [
     subCategory: "sarees",
     price: 1599,
     mrp: 3499,
-    badge: "BRIDAL SPECIAL",
+    badge: "BRIDAL LUXE",
     image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80",
     hoverImage: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80",
     rating: 5.0,
@@ -197,19 +199,19 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-const HERO_SLIDES = [
+const HERO_BANNERS = [
   {
-    tag: "GRAND FESTIVE LAUNCH",
-    title: "Trending Indian & Western Styles",
-    desc: "Over 5,000+ handpicked styles across Men, Women & Kids.",
-    bg: "from-black via-neutral-900 to-rose-950",
+    tag: "GRAND FESTIVE SALE",
+    title: "AJIO & MYNTRA LUXE EDIT",
+    desc: "Handcrafted Sarees, Designer Streetwear & Festive Kids Ensembles.",
+    bg: "from-neutral-950 via-neutral-900 to-rose-950",
     img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80",
   },
   {
     tag: "ROYAL ETHNIC STUDIO",
-    title: "Pure Banarasi Silk & Sherwanis",
-    desc: "Direct weaver prices on bridal silk sarees and party wear.",
-    bg: "from-black via-neutral-900 to-amber-950",
+    title: "PURE ZARI & SILK WEAVES",
+    desc: "Direct artisan collections at competitive wholesale margins.",
+    bg: "from-neutral-950 via-neutral-900 to-amber-950",
     img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
   },
 ];
@@ -243,8 +245,8 @@ export default function HomePage() {
     if (savedWish) setWishlist(JSON.parse(savedWish));
 
     const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_SLIDES.length);
-    }, 4500);
+      setCurrentSlide((prev) => (prev + 1) % HERO_BANNERS.length);
+    }, 5000);
     return () => clearInterval(interval);
   }, []);
 
@@ -338,17 +340,19 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f5f5f6] text-neutral-900 antialiased pb-20 lg:pb-12">
-      {/* 1. TOP ANNOUNCEMENT TICKER */}
-      <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase flex justify-center items-center gap-2">
-        <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
-        <span>
-          GRAND LAUNCH: FLAT 40% OFF CODE: <strong className="text-rose-400">ASF40</strong> | FREE SHIPPING ACROSS INDIA
+    <div className="min-h-screen bg-[#fafafb] text-neutral-900 antialiased pb-20 lg:pb-12 font-sans selection:bg-[#ff3f6c] selection:text-white">
+      
+      {/* 1. TOP TICKER */}
+      <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase flex justify-between items-center border-b border-neutral-800">
+        <span className="hidden sm:flex items-center gap-1.5"><Truck className="h-3.5 w-3.5 text-rose-500" /> Free Express Delivery Across India</span>
+        <span className="mx-auto flex items-center gap-1.5">
+          <Zap className="h-3.5 w-3.5 text-amber-400 fill-amber-400" /> GRAND LAUNCH: FLAT 40% OFF CODE: <strong className="text-rose-400">ASF40</strong>
         </span>
+        <span className="hidden md:flex items-center gap-1.5"><RotateCcw className="h-3.5 w-3.5 text-neutral-400" /> 15 Days Easy Returns</span>
       </div>
 
       {/* 2. STICKY APP NAVBAR */}
-      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200 shadow-xs">
+      <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-neutral-200/80 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 h-16 sm:h-20 flex items-center justify-between gap-4">
           <div
             onClick={() => {
@@ -361,11 +365,11 @@ export default function HomePage() {
               AS
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-xl font-black tracking-widest leading-none">
+              <span className="text-base sm:text-xl font-black tracking-widest leading-none font-['Syne']">
                 AS <span className="text-[#ff3f6c]">FASHIONS</span>
               </span>
               <span className="text-[7px] tracking-[0.3em] uppercase text-neutral-400 font-extrabold mt-0.5">
-                Family Mall
+                Luxury Mall
               </span>
             </div>
           </div>
@@ -374,9 +378,9 @@ export default function HomePage() {
           <nav className="hidden lg:flex items-center space-x-8 text-xs font-black uppercase tracking-wider text-neutral-800">
             {[
               { id: "all", label: "All Mall" },
-              { id: "men", label: "👔 Men" },
-              { id: "women", label: "👗 Women" },
-              { id: "kids", label: "🧒 Kids" },
+              { id: "men", label: "Men" },
+              { id: "women", label: "Women" },
+              { id: "kids", label: "Kids" },
             ].map((d) => (
               <button
                 key={d.id}
@@ -401,7 +405,7 @@ export default function HomePage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search 5,000+ Styles..."
+              placeholder="Search Sarees, Shirts, Kurtis..."
               className="w-full bg-neutral-100 pl-9 pr-4 py-2 rounded-full text-xs font-medium focus:bg-white focus:outline-none border border-transparent focus:border-black transition"
             />
             <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-neutral-400" />
@@ -431,8 +435,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* 3. MYNTRA CIRCULAR STORY BUBBLES */}
-      <section className="bg-white border-b border-neutral-200 py-3 overflow-x-auto no-scrollbar">
+      {/* 3. STORIES HORIZONTAL CAROUSEL */}
+      <section className="bg-white border-b border-neutral-200/80 py-3 overflow-x-auto no-scrollbar">
         <div className="max-w-7xl mx-auto px-4 flex items-center space-x-4 sm:space-x-6 min-w-max">
           <div
             onClick={() => {
@@ -548,10 +552,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. AUTO-SLIDER HERO BANNER */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-4">
-        <div className="relative w-full h-48 sm:h-72 rounded-3xl overflow-hidden shadow-md bg-black">
-          {HERO_SLIDES.map((slide, idx) => (
+      {/* 4. LUXURY BENTO HERO EDITORIAL */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-5">
+        <div className="relative w-full h-52 sm:h-80 rounded-3xl overflow-hidden shadow-sm bg-black">
+          {HERO_BANNERS.map((slide, idx) => (
             <div
               key={slide.tag}
               className={`absolute inset-0 transition-opacity duration-700 flex items-center justify-between p-6 sm:p-12 bg-gradient-to-r ${slide.bg} text-white ${
@@ -562,7 +566,7 @@ export default function HomePage() {
                 <span className="bg-[#ff3f6c] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full">
                   {slide.tag}
                 </span>
-                <h2 className="text-xl sm:text-3xl font-black leading-tight">
+                <h2 className="text-xl sm:text-3xl font-black leading-tight font-['Syne']">
                   {slide.title}
                 </h2>
                 <p className="text-[11px] sm:text-xs text-neutral-300">
@@ -572,9 +576,9 @@ export default function HomePage() {
                   onClick={() => {
                     document.getElementById("catalogSection")?.scrollIntoView({ behavior: "smooth" });
                   }}
-                  className="bg-white text-black font-extrabold text-[10px] sm:text-xs uppercase px-5 py-2 rounded-full hover:bg-[#ff3f6c] hover:text-white transition"
+                  className="bg-white text-black font-extrabold text-[10px] sm:text-xs uppercase px-5 py-2.5 rounded-full hover:bg-[#ff3f6c] hover:text-white transition shadow-sm"
                 >
-                  Shop Now
+                  Shop The Edit →
                 </button>
               </div>
               <img
@@ -584,7 +588,7 @@ export default function HomePage() {
             </div>
           ))}
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-20">
-            {HERO_SLIDES.map((_, idx) => (
+            {HERO_BANNERS.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => setCurrentSlide(idx)}
@@ -597,129 +601,30 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. SHOP BY CATEGORY (VISUAL GRID TILES) */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-4">
-        <div className="flex items-center justify-between mb-3">
-          <h3 className="text-xs sm:text-sm font-black uppercase tracking-wider text-neutral-900">
-            Shop By Department
-          </h3>
-          <span className="text-[11px] text-[#ff3f6c] font-bold">
-            {selectedDept.toUpperCase()}
-          </span>
-        </div>
-
-        <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-          <div
-            onClick={() => {
-              setSelectedDept("men");
-              setSelectedSub("formal-shirts");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
+      {/* 5. FLASH SALE & TRUST BADGES GRID */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-3">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
+          <div className="bg-gradient-to-r from-neutral-900 to-black text-white p-4 rounded-2xl flex items-center justify-between shadow-xs">
+            <div className="space-y-1">
+              <span className="text-[9px] font-black text-rose-400 uppercase tracking-widest flex items-center gap-1"><Flame className="h-3 w-3" /> Lightning Deals</span>
+              <h4 className="text-xs font-black">Flat 50-70% Off</h4>
             </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Men Shirts</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">Min 40% Off</p>
+            <span className="text-xs font-bold text-neutral-300 underline cursor-pointer">Explore</span>
+          </div>
+
+          <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 flex items-center space-x-3 shadow-xs">
+            <ShieldCheck className="h-7 w-7 text-emerald-600" />
+            <div>
+              <h4 className="text-xs font-black text-neutral-900">100% Original Brand Assured</h4>
+              <p className="text-[10px] text-neutral-500">Sourced from top manufacturing houses</p>
             </div>
           </div>
 
-          <div
-            onClick={() => {
-              setSelectedDept("women");
-              setSelectedSub("sarees");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Silk Sarees</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">Up to 60% Off</p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("women");
-              setSelectedSub("western");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Western Dresses</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">Flat 45% Off</p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("men");
-              setSelectedSub("denim");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1542272604-780c96856484?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Men Jeans</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">From ₹999</p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("kids");
-              setSelectedSub("kids-ethnic");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Kids Ethnic</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">Min 50% Off</p>
-            </div>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("kids");
-              setSelectedSub("girls-frocks");
-            }}
-            className="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs cursor-pointer group"
-          >
-            <div className="aspect-[4/5] overflow-hidden bg-neutral-100">
-              <img
-                src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=400&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover group-hover:scale-105 transition duration-500"
-              />
-            </div>
-            <div className="p-2 text-center">
-              <p className="text-xs font-bold text-neutral-900">Girls Frocks</p>
-              <p className="text-[10px] text-[#ff3f6c] font-black">Flat 40% Off</p>
+          <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 flex items-center space-x-3 shadow-xs">
+            <RotateCcw className="h-7 w-7 text-blue-600" />
+            <div>
+              <h4 className="text-xs font-black text-neutral-900">15-Day Instant Returns</h4>
+              <p className="text-[10px] text-neutral-500">Hassle-free doorstep pickup & exchange</p>
             </div>
           </div>
         </div>
@@ -738,13 +643,13 @@ export default function HomePage() {
           </div>
 
           <div className="hidden sm:flex items-center space-x-2">
-            <label className="text-xs font-bold text-neutral-500 uppercase">Sort:</label>
+            <label className="text-xs font-bold text-neutral-500 uppercase">Sort By:</label>
             <select
               value={sortOrder}
               onChange={(e) => setSortOrder(e.target.value)}
               className="border border-neutral-200 rounded-xl px-3 py-1.5 text-xs font-bold bg-white focus:outline-none"
             >
-              <option value="popular">Popularity</option>
+              <option value="popular">Popularity &amp; Ratings</option>
               <option value="low-high">Price: Low to High</option>
               <option value="high-low">Price: High to Low</option>
               <option value="discount">Biggest Discount</option>
@@ -760,7 +665,7 @@ export default function HomePage() {
             return (
               <div
                 key={p.id}
-                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200/90 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200/80 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
               >
                 <div>
                   <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
@@ -789,7 +694,7 @@ export default function HomePage() {
                     <div className="flex items-center space-x-1 text-[9px] text-amber-500 font-bold">
                       <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
                       <span>{p.rating}</span>
-                      <span className="text-neutral-400">({p.reviews})</span>
+                      <span className="text-neutral-400 font-normal">({p.reviews})</span>
                     </div>
                     <span className="text-[10px] font-black uppercase text-neutral-400 block truncate">
                       {p.brand}
