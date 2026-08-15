@@ -2,478 +2,587 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>AS FASHIONS | The Mega Family Mall</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AS FASHIONS | Luxury Fashion, Footwear & Home Living Mall</title>
   
-  <!-- Tailwind CSS & Icons -->
+  <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <!-- Google Fonts: Inter & Syne -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,600;0,800;1,600&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
 
   <style>
-    body { font-family: 'Inter', sans-serif; background-color: #f4f4f5; }
+    body { font-family: 'Inter', sans-serif; background-color: #f7f7f8; }
+    .serif-title { font-family: 'Playfair Display', serif; }
+    .brand-title { font-family: 'Syne', sans-serif; }
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-    .fade-in { animation: fadeIn 0.4s ease-in-out; }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+    .card-zoom:hover .zoom-img { transform: scale(1.04); }
   </style>
 </head>
-<body class="text-neutral-900 antialiased selection:bg-rose-600 selection:text-white pb-16">
+<body class="text-neutral-900 antialiased selection:bg-rose-600 selection:text-white">
 
-  <!-- 1. TOP STRIP -->
-  <div class="bg-black text-white text-[10px] uppercase tracking-wider py-1.5 px-3 text-center font-bold flex justify-center items-center gap-2">
-    <span>⚡ GRAND OPENING: FLAT 40% OFF CODE: <strong class="text-rose-400">ASF40</strong> | FREE SHIPPING</span>
+  <!-- 1. TOP UTILITY BAR -->
+  <div class="bg-black text-white text-[11px] py-2 px-4 sm:px-8 flex items-center justify-between border-b border-neutral-800">
+    <div class="flex items-center space-x-4">
+      <span class="flex items-center gap-1.5 cursor-pointer hover:text-neutral-300"><i class="fa-solid fa-mobile-screen"></i> Download App</span>
+      <span class="hidden sm:inline text-neutral-600">|</span>
+      <span class="hidden sm:flex items-center gap-1.5 cursor-pointer hover:text-neutral-300"><i class="fa-solid fa-location-dot"></i> Store Locator</span>
+    </div>
+    
+    <div class="font-bold tracking-wider text-[10px] sm:text-[11px] text-center uppercase text-neutral-200">
+      ⚡ EXTRA 10% OFF ON PREPAID ORDERS • CODE: <strong class="text-rose-400">ASF40</strong>
+    </div>
+
+    <div class="flex items-center space-x-4">
+      <span class="hidden md:inline cursor-pointer hover:text-neutral-300">Easy Returns &amp; Exchange</span>
+      <span class="hidden md:inline text-neutral-600">|</span>
+      <span class="cursor-pointer hover:text-neutral-300">Help</span>
+      <span class="text-neutral-600">|</span>
+      <span class="cursor-pointer hover:text-neutral-300">Track Order</span>
+    </div>
   </div>
 
-  <!-- 2. STICKY APP NAVBAR -->
+  <!-- 2. MAIN BRAND HEADER -->
   <header class="sticky top-0 z-40 bg-white border-b border-neutral-200 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 h-14 sm:h-16 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-6">
       
-      <!-- Brand Logo -->
-      <a href="#" onclick="resetCatalog()" class="flex items-center space-x-2">
-        <div class="w-8 h-8 bg-black text-white rounded-lg flex items-center justify-center font-black text-xs tracking-wider">
+      <!-- LOGO -->
+      <a href="#" onclick="filterByDept('all')" class="flex items-center space-x-3 shrink-0">
+        <div class="w-11 h-11 bg-black text-white flex items-center justify-center rounded-2xl font-black text-base tracking-widest shadow-md">
           AS
         </div>
         <div class="flex flex-col">
-          <span class="text-base sm:text-lg font-black tracking-wider text-black leading-none">
+          <span class="brand-title text-xl font-black tracking-[0.16em] text-black leading-tight">
             AS <span class="text-rose-600">FASHIONS</span>
           </span>
-          <span class="text-[7px] tracking-[0.25em] uppercase text-neutral-400 font-bold">Family Mall</span>
+          <span class="text-[8px] tracking-[0.35em] uppercase text-neutral-400 font-extrabold">Family Mall</span>
         </div>
       </a>
 
-      <!-- Right Action Icons -->
-      <div class="flex items-center space-x-3">
-        <button onclick="toggleWishlistModal()" class="relative p-1.5 text-neutral-700 hover:text-rose-600">
-          <i class="fa-regular fa-heart text-lg"></i>
-          <span id="wishlistBadge" class="absolute 0 right-0 bg-rose-600 text-white font-black text-[8px] rounded-full h-3.5 w-3.5 flex items-center justify-center">0</span>
+      <!-- MAIN TABS (MEN, WOMEN, KIDS, BEAUTY, HOME & LIVING, BRANDS, SALE) -->
+      <nav class="hidden xl:flex items-center space-x-7 text-xs font-black uppercase tracking-wider text-neutral-700">
+        <button onclick="filterByDept('men')" class="nav-dept-btn hover:text-rose-600 py-2 transition" data-dept="men">Men</button>
+        <button onclick="filterByDept('women')" class="nav-dept-btn text-rose-600 border-b-2 border-rose-600 py-2 transition" data-dept="women">Women</button>
+        <button onclick="filterByDept('kids')" class="nav-dept-btn hover:text-rose-600 py-2 transition" data-dept="kids">Kids</button>
+        <button onclick="filterByDept('footwear')" class="nav-dept-btn hover:text-rose-600 py-2 transition" data-dept="footwear">Footwear 👟</button>
+        <button onclick="filterByDept('home-living')" class="nav-dept-btn hover:text-rose-600 py-2 transition text-emerald-700 font-extrabold" data-dept="home-living">Home &amp; Living 🏠</button>
+        <button onclick="filterByDept('beauty')" class="nav-dept-btn hover:text-rose-600 py-2 transition" data-dept="beauty">Beauty</button>
+        <button onclick="filterByDept('brands')" class="nav-dept-btn hover:text-rose-600 py-2 transition" data-dept="brands">Brands</button>
+        <button onclick="filterByDept('sale')" class="nav-dept-btn text-rose-600 font-extrabold py-2 transition" data-dept="sale">Sale</button>
+      </nav>
+
+      <!-- SEARCH BAR -->
+      <div class="relative flex-1 max-w-md hidden md:block">
+        <input type="text" id="mainSearch" oninput="handleSearch(this.value)" placeholder="Search for products, brands and more" class="w-full bg-neutral-100 pl-10 pr-4 py-2.5 rounded-full text-xs font-medium border border-transparent focus:bg-white focus:border-black focus:outline-none transition">
+        <i class="fa fa-search absolute left-3.5 top-3.5 text-neutral-400 text-xs"></i>
+      </div>
+
+      <!-- ACCOUNT, WISHLIST, BAG -->
+      <div class="flex items-center space-x-6 text-neutral-800 shrink-0">
+        <button onclick="promptAdminPin()" class="hidden sm:flex flex-col items-center group text-neutral-700 hover:text-black">
+          <i class="fa-regular fa-user text-base group-hover:scale-110 transition"></i>
+          <span class="text-[10px] font-bold mt-1">Sign In</span>
         </button>
-        <button onclick="toggleCart()" class="relative p-1.5 text-neutral-700 hover:text-rose-600">
-          <i class="fa-solid fa-bag-shopping text-lg"></i>
-          <span id="cartCountBadge" class="absolute 0 right-0 bg-rose-600 text-white font-black text-[8px] rounded-full h-3.5 w-3.5 flex items-center justify-center">0</span>
+
+        <button onclick="toggleWishlistModal()" class="relative flex flex-col items-center group text-neutral-700 hover:text-rose-600">
+          <i class="fa-regular fa-heart text-base group-hover:scale-110 transition"></i>
+          <span id="wishlistBadge" class="absolute -top-1 right-2 bg-rose-600 text-white font-bold text-[9px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          <span class="text-[10px] font-bold mt-1">Wishlist</span>
+        </button>
+
+        <button onclick="toggleCart()" class="relative flex flex-col items-center group text-neutral-700 hover:text-black">
+          <i class="fa-solid fa-bag-shopping text-base group-hover:scale-110 transition"></i>
+          <span id="cartCountBadge" class="absolute -top-1 right-1 bg-black text-white font-bold text-[9px] rounded-full h-4 w-4 flex items-center justify-center">0</span>
+          <span class="text-[10px] font-bold mt-1">Bag</span>
         </button>
       </div>
 
     </div>
   </header>
 
-  <!-- 3. CIRCULAR STORY SCROLLER (VERIFIED WORKING IMAGES) -->
-  <section class="bg-white border-b border-neutral-200 py-2.5 overflow-x-auto no-scrollbar">
-    <div class="px-4 flex items-center space-x-4 min-w-max">
+  <!-- 3. MEGA SHOWCASE CONTAINER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white rounded-3xl border border-neutral-200 shadow-sm p-4 sm:p-6 overflow-hidden">
       
-      <div onclick="setMainCategory('all')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border-2 border-rose-600">
-          <img src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-bold text-neutral-800">All Mall</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('men', 'formal-shirts')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Shirts</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('men', 'denim')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1542272604-780c96856484?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Jeans</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('women', 'silk-sarees')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Sarees</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('women', 'kurtis')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Kurtis</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('footwear', 'sneakers')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Sneakers</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('kids', 'boys-ethnic')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Kids</span>
-      </div>
-
-      <div onclick="filterVisualSubcategory('footwear', 'heels')" class="flex flex-col items-center space-y-1 cursor-pointer">
-        <div class="w-13 h-13 rounded-full p-0.5 border border-neutral-200">
-          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=150&auto=format&fit=crop&q=80" class="w-12 h-12 rounded-full object-cover">
-        </div>
-        <span class="text-[10px] font-semibold text-neutral-700">Heels</span>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 4. REAL FASHION BANNER -->
-  <section class="p-3">
-    <div class="relative w-full h-44 rounded-2xl overflow-hidden shadow-sm bg-neutral-900">
-      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?w=800&auto=format&fit=crop&q=80" class="w-full h-full object-cover opacity-60">
-      <div class="absolute inset-0 p-5 flex flex-col justify-center text-white space-y-1.5">
-        <span class="bg-rose-600 text-white text-[9px] font-extrabold uppercase px-2 py-0.5 rounded w-fit">Festive Collection</span>
-        <h2 class="text-xl font-black leading-tight">Trending Indian Couture &amp; Footwear</h2>
-        <p class="text-[11px] text-neutral-200">Direct wholesale prices on 5,000+ fashion styles</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- 5. COMPACT SHOP BY CATEGORY -->
-  <section class="px-3 py-2">
-    <div class="flex items-center justify-between mb-2.5">
-      <h3 class="text-xs font-black uppercase tracking-wider text-neutral-900">Shop By Department</h3>
-      <span class="text-[11px] text-rose-600 font-bold" id="activeFilterLabel">All Mall</span>
-    </div>
-
-    <div class="grid grid-cols-3 sm:grid-cols-6 gap-2">
-      
-      <div onclick="filterVisualSubcategory('men', 'formal-shirts')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Men Shirts</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">Min 40% Off</p>
+      <!-- LEFT: SHOP BY CATEGORY VERTICAL DIRECTORY -->
+      <div class="lg:col-span-3 border-r border-neutral-100 pr-4 space-y-2">
+        <span class="text-[10px] font-black uppercase tracking-wider text-neutral-400 block pb-1 border-b">Shop By Category</span>
+        <div class="space-y-1 text-xs font-semibold text-neutral-700">
+          <button onclick="filterSub('sarees')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Indian &amp; Ethnic Wear</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
+          <button onclick="filterSub('western')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Western Wear &amp; Dresses</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
+          <button onclick="filterSub('formal-shirts')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Men's Formal &amp; Casuals</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
+          <button onclick="filterSub('bedsheets')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-emerald-50 text-emerald-800 font-bold transition"><span>Home: Luxury Bedsheets</span><i class="fa fa-angle-right text-emerald-400 text-xs"></i></button>
+          <button onclick="filterSub('curtains')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-emerald-50 text-emerald-800 font-bold transition"><span>Home: Curtains &amp; Drapes</span><i class="fa fa-angle-right text-emerald-400 text-xs"></i></button>
+          <button onclick="filterSub('decor')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-emerald-50 text-emerald-800 font-bold transition"><span>Home: Decor &amp; Lighting</span><i class="fa fa-angle-right text-emerald-400 text-xs"></i></button>
+          <button onclick="filterSub('sneakers')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Footwear: Running Sneakers</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
+          <button onclick="filterSub('heels')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Footwear: Heels &amp; Flats</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
+          <button onclick="filterSub('kids-wear')" class="w-full flex items-center justify-between p-2 rounded-xl hover:bg-neutral-100 transition"><span>Kids' Party &amp; Ethnic</span><i class="fa fa-angle-right text-neutral-400 text-xs"></i></button>
         </div>
       </div>
 
-      <div onclick="filterVisualSubcategory('women', 'silk-sarees')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Silk Sarees</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">Up to 60% Off</p>
-        </div>
-      </div>
-
-      <div onclick="filterVisualSubcategory('women', 'kurtis')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Kurtis</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">Flat 45% Off</p>
-        </div>
-      </div>
-
-      <div onclick="filterVisualSubcategory('footwear', 'sneakers')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Sneakers</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">From ₹899</p>
-        </div>
-      </div>
-
-      <div onclick="filterVisualSubcategory('kids', 'boys-ethnic')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Kids Ethnic</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">Min 50% Off</p>
-        </div>
-      </div>
-
-      <div onclick="filterVisualSubcategory('footwear', 'heels')" class="bg-white rounded-xl overflow-hidden border border-neutral-200 cursor-pointer shadow-xs">
-        <div class="aspect-[3/4] bg-neutral-100 overflow-hidden">
-          <img src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=300&auto=format&fit=crop&q=80" class="w-full h-full object-cover">
-        </div>
-        <div class="p-1.5 text-center">
-          <p class="text-[11px] font-bold text-neutral-900 truncate">Heels</p>
-          <p class="text-[9px] text-rose-600 font-extrabold">Flat 40% Off</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- 6. PRODUCT CATALOG GRID (COMPACT MYNTRA 2-COLUMN) -->
-  <main id="catalogSection" class="p-3">
-    <div class="flex items-center justify-between mb-2">
-      <h3 class="text-xs font-black uppercase tracking-wider text-neutral-900">Featured Catalog</h3>
-      <span class="text-[10px] text-neutral-500" id="itemCountDisplay">Loading...</span>
-    </div>
-
-    <div id="productGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2.5">
-      <!-- Injected via JavaScript -->
-    </div>
-  </main>
-
-  <!-- 7. MOBILE STICKY FLOATING APP BAR -->
-  <div class="fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-neutral-200 shadow-2xl flex items-center justify-around h-12">
-    <button onclick="openSortDrawer()" class="flex-1 flex items-center justify-center space-x-1.5 text-xs font-bold text-neutral-800 border-r border-neutral-200 h-full">
-      <i class="fa-solid fa-arrow-down-wide-short text-rose-600 text-xs"></i>
-      <span>Sort</span>
-    </button>
-    <button onclick="openFilterDrawer()" class="flex-1 flex items-center justify-center space-x-1.5 text-xs font-bold text-neutral-800 h-full">
-      <i class="fa-solid fa-sliders text-rose-600 text-xs"></i>
-      <span>Filter</span>
-    </button>
-  </div>
-
-  <!-- 8. NATIVE SORT BOTTOM SHEET -->
-  <div id="sortDrawer" class="fixed inset-0 z-50 bg-black/60 hidden flex items-end">
-    <div class="bg-white w-full rounded-t-2xl p-5 space-y-3 shadow-2xl">
-      <div class="flex items-center justify-between border-b pb-2">
-        <h3 class="text-xs font-black uppercase text-neutral-900">Sort Products</h3>
-        <button onclick="closeSortDrawer()" class="text-xl font-bold text-neutral-400">&times;</button>
-      </div>
-      <div class="space-y-1 text-xs font-bold">
-        <button onclick="selectSortOption('popular')" class="w-full text-left p-2.5 rounded-lg hover:bg-neutral-100 flex items-center justify-between">
-          <span>Popularity</span>
-          <i class="fa-solid fa-check text-rose-600"></i>
-        </button>
-        <button onclick="selectSortOption('low-high')" class="w-full text-left p-2.5 rounded-lg hover:bg-neutral-100">Price: Low to High</button>
-        <button onclick="selectSortOption('high-low')" class="w-full text-left p-2.5 rounded-lg hover:bg-neutral-100">Price: High to Low</button>
-        <button onclick="selectSortOption('discount')" class="w-full text-left p-2.5 rounded-lg hover:bg-neutral-100">Better Discount</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- 9. NATIVE FILTER DRAWER -->
-  <div id="filterDrawer" class="fixed inset-0 z-50 bg-black/60 hidden flex justify-end">
-    <div class="bg-white w-full max-w-xs h-full flex flex-col justify-between p-5 shadow-2xl overflow-y-auto">
-      <div class="space-y-5">
-        <div class="flex items-center justify-between border-b pb-2">
-          <h3 class="text-xs font-black uppercase text-neutral-900">Filter By</h3>
-          <button onclick="closeFilterDrawer()" class="text-xl font-bold text-neutral-400">&times;</button>
-        </div>
-
-        <div class="space-y-1.5">
-          <label class="text-[10px] font-bold uppercase text-neutral-400">Department</label>
-          <div class="grid grid-cols-2 gap-1.5">
-            <button onclick="setMainCategory('all'); closeFilterDrawer();" class="p-2 rounded-lg border text-xs font-bold bg-black text-white">All Mall</button>
-            <button onclick="setMainCategory('men'); closeFilterDrawer();" class="p-2 rounded-lg border text-xs font-bold">👔 Men</button>
-            <button onclick="setMainCategory('women'); closeFilterDrawer();" class="p-2 rounded-lg border text-xs font-bold">👗 Women</button>
-            <button onclick="setMainCategory('kids'); closeFilterDrawer();" class="p-2 rounded-lg border text-xs font-bold">🧒 Kids</button>
-            <button onclick="setMainCategory('footwear'); closeFilterDrawer();" class="p-2 rounded-lg border text-xs font-bold col-span-2">👟 Footwear</button>
+      <!-- MIDDLE: SUB-MENU & PROMO CARD -->
+      <div class="lg:col-span-3 border-r border-neutral-100 pr-4 space-y-4">
+        <div class="relative rounded-2xl overflow-hidden aspect-[4/5] shadow-xs group cursor-pointer" onclick="filterSub('sarees')">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-700">
+          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent p-5 flex flex-col justify-end text-white">
+            <span class="text-[9px] uppercase tracking-widest text-rose-300 font-black">New In</span>
+            <h4 class="text-base font-black">Ethnic Collection</h4>
+            <span class="text-xs font-bold text-white underline mt-1">Shop Now →</span>
           </div>
         </div>
 
-        <div class="space-y-1.5">
-          <label class="text-[10px] font-bold uppercase text-neutral-400">Select Size</label>
-          <div class="flex flex-wrap gap-1.5">
-            <button onclick="filterBySize('S'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">S</button>
-            <button onclick="filterBySize('M'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">M</button>
-            <button onclick="filterBySize('L'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">L</button>
-            <button onclick="filterBySize('XL'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">XL</button>
-            <button onclick="filterBySize('7'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">7</button>
-            <button onclick="filterBySize('8'); closeFilterDrawer();" class="w-8 h-8 rounded border text-xs font-bold flex items-center justify-center">8</button>
-          </div>
+        <div class="grid grid-cols-2 gap-2 text-[10px] font-bold text-neutral-600">
+          <div class="flex items-center gap-1.5 bg-neutral-50 p-2 rounded-xl border"><i class="fa-solid fa-award text-rose-600"></i> Premium Quality</div>
+          <div class="flex items-center gap-1.5 bg-neutral-50 p-2 rounded-xl border"><i class="fa-solid fa-shield-check text-green-600"></i> 100% Original</div>
+          <div class="flex items-center gap-1.5 bg-neutral-50 p-2 rounded-xl border"><i class="fa-solid fa-rotate-left text-blue-600"></i> Easy Returns</div>
+          <div class="flex items-center gap-1.5 bg-neutral-50 p-2 rounded-xl border"><i class="fa-solid fa-lock text-amber-600"></i> Secure Pay</div>
         </div>
       </div>
 
-      <button onclick="closeFilterDrawer()" class="w-full bg-black text-white py-2.5 rounded-xl font-bold text-xs uppercase">
-        Apply Filter
-      </button>
-    </div>
-  </div>
+      <!-- RIGHT: LUXURY HERO EDITORIAL BANNER -->
+      <div class="lg:col-span-6 flex items-center justify-between bg-gradient-to-r from-neutral-100 via-neutral-50 to-white rounded-2xl p-6 sm:p-10 relative overflow-hidden">
+        <div class="space-y-4 max-w-sm z-10">
+          <span class="text-[10px] uppercase tracking-[0.3em] font-extrabold text-neutral-500">New Season</span>
+          <h1 class="serif-title text-3xl sm:text-5xl font-normal leading-tight text-neutral-950">
+            NEW STYLE
+          </h1>
+          <p class="text-xs sm:text-sm text-neutral-600 leading-relaxed">Refresh your wardrobe &amp; home with our latest seasonal collection.</p>
+          <div class="pt-2">
+            <span class="text-base sm:text-lg font-extrabold text-neutral-900 block mb-3">UP TO <strong class="text-rose-600">60% OFF</strong></span>
+            <button onclick="scrollToCatalog()" class="bg-black hover:bg-rose-600 text-white font-extrabold text-xs uppercase tracking-widest px-8 py-3.5 rounded-full shadow-lg transition">
+              Shop Now
+            </button>
+          </div>
+        </div>
+        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=600&auto=format&fit=crop&q=80" class="hidden sm:block w-56 h-72 object-cover rounded-2xl shadow-xl">
+      </div>
 
-  <!-- 10. SHOPPING BAG DRAWER -->
-  <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 hidden flex justify-end">
-    <div class="bg-white w-full max-w-sm h-full flex flex-col justify-between p-5 shadow-2xl overflow-y-auto">
-      <div>
+    </div>
+  </section>
+
+  <!-- 4. CIRCULAR STORIES SCROLLER -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-4 overflow-x-auto no-scrollbar">
+    <div class="flex items-center justify-between space-x-6 min-w-max">
+      
+      <div onclick="filterByDept('all')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border-2 border-black group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-bold text-neutral-800">New In</span>
+      </div>
+
+      <div onclick="filterSub('formal-shirts')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border border-neutral-200 group-hover:border-black group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-semibold text-neutral-700">Clothing</span>
+      </div>
+
+      <div onclick="filterSub('sarees')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border border-neutral-200 group-hover:border-black group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-semibold text-neutral-700">Indian Wear</span>
+      </div>
+
+      <div onclick="filterSub('western')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border border-neutral-200 group-hover:border-black group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-semibold text-neutral-700">Western Wear</span>
+      </div>
+
+      <div onclick="filterByDept('home-living')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border-2 border-emerald-600 group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-bold text-emerald-800">Home &amp; Living</span>
+      </div>
+
+      <div onclick="filterSub('sneakers')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full p-0.5 border border-neutral-200 group-hover:border-black group-hover:scale-105 transition">
+          <img src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=200&auto=format&fit=crop&q=80" class="w-full h-full object-cover rounded-full">
+        </div>
+        <span class="text-xs font-semibold text-neutral-700">Shoes</span>
+      </div>
+
+      <div onclick="filterByDept('sale')" class="flex flex-col items-center space-y-1.5 cursor-pointer group">
+        <div class="w-16 h-16 rounded-full bg-rose-600 text-white flex flex-col items-center justify-center font-black group-hover:scale-105 transition shadow-md">
+          <span class="text-xs">SALE</span>
+          <span class="text-[8px]">50-80%</span>
+        </div>
+        <span class="text-xs font-bold text-rose-600">Sale</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. MAIN SHOWCASE: FLASH SALE + BEST OF AS FASHIONS + TRUST BADGES -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      
+      <!-- FLASH SALE & DEALS SIDEBAR -->
+      <div class="lg:col-span-3 space-y-4">
+        <div class="bg-neutral-950 text-white rounded-3xl p-5 relative overflow-hidden shadow-sm">
+          <div class="space-y-2 z-10 relative">
+            <div class="flex items-center space-x-2 text-rose-500 font-black text-xs uppercase tracking-wider">
+              <i class="fa-solid fa-bolt"></i>
+              <span>Flash Sale</span>
+            </div>
+            <h4 class="text-sm font-bold text-neutral-300">Limited Time Offer</h4>
+            
+            <div class="flex items-center space-x-2 py-2 text-center font-black">
+              <div class="bg-neutral-900 border border-neutral-800 p-2 rounded-xl w-12"><span class="text-sm">02</span><span class="block text-[8px] text-neutral-400">HRS</span></div>
+              <span>:</span>
+              <div class="bg-neutral-900 border border-neutral-800 p-2 rounded-xl w-12"><span class="text-sm">36</span><span class="block text-[8px] text-neutral-400">MINS</span></div>
+              <span>:</span>
+              <div class="bg-neutral-900 border border-neutral-800 p-2 rounded-xl w-12"><span class="text-sm">58</span><span class="block text-[8px] text-neutral-400">SECS</span></div>
+            </div>
+
+            <button onclick="scrollToCatalog()" class="w-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-bold py-2.5 rounded-xl uppercase tracking-wider transition">
+              Shop All Deals →
+            </button>
+          </div>
+        </div>
+
+        <!-- NEW ARRIVALS MINI BANNER -->
+        <div class="bg-white border border-neutral-200 rounded-3xl p-5 shadow-xs flex items-center justify-between">
+          <div class="space-y-1">
+            <span class="text-xs font-black uppercase text-neutral-900">New Arrivals</span>
+            <p class="text-[11px] text-neutral-500">1000+ Styles Added</p>
+            <span class="text-xs font-bold text-rose-600 hover:underline cursor-pointer block pt-1">Explore Now →</span>
+          </div>
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&auto=format&fit=crop&q=80" class="w-16 h-16 rounded-2xl object-cover">
+        </div>
+      </div>
+
+      <!-- CENTER: BEST OF AS FASHIONS (MYNTRA LUXURY CARDS) -->
+      <div class="lg:col-span-7 space-y-4">
         <div class="flex items-center justify-between border-b pb-3">
-          <h2 class="text-sm font-black">Shopping Bag (<span id="cartCountTitle">0</span>)</h2>
-          <button onclick="toggleCart()" class="text-xl font-bold text-neutral-400">&times;</button>
+          <div>
+            <h3 class="text-base sm:text-lg font-black tracking-tight text-neutral-900 uppercase">Best of AS FASHIONS</h3>
+          </div>
+          <div class="flex items-center space-x-3 text-xs font-bold text-neutral-500">
+            <button onclick="filterFeed('trending')" class="feed-tab text-black font-extrabold pb-1 border-b-2 border-black" data-feed="trending">Trending Now</button>
+            <button onclick="filterFeed('new')" class="feed-tab hover:text-black pb-1" data-feed="new">New Arrivals</button>
+            <button onclick="filterFeed('best')" class="feed-tab hover:text-black pb-1" data-feed="best">Best Sellers</button>
+          </div>
         </div>
-        <div id="cartItemList" class="divide-y divide-neutral-100 my-3 max-h-[50vh] overflow-y-auto"></div>
 
-        <div class="bg-neutral-50 p-2.5 rounded-xl border space-y-1.5">
-          <div class="flex space-x-1.5">
-            <input type="text" id="couponInput" placeholder="Promo: ASF40" class="w-full text-xs uppercase px-2.5 py-1.5 border rounded-lg bg-white">
-            <button onclick="applyCoupon()" class="bg-black text-white text-xs font-bold px-3 py-1.5 rounded-lg">Apply</button>
+        <!-- PRODUCT CARDS SLIDER/GRID -->
+        <div id="bestGrid" class="grid grid-cols-2 sm:grid-cols-3 gap-4">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- RIGHT: TRUST & DELIVERY BADGES -->
+      <div class="lg:col-span-2 bg-white rounded-3xl p-5 border border-neutral-200 shadow-xs space-y-5 flex flex-col justify-around text-xs">
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-neutral-100 text-neutral-900 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-truck-fast"></i></div>
+          <div>
+            <span class="font-extrabold text-neutral-900 block text-[11px]">Free Delivery</span>
+            <span class="text-[10px] text-neutral-500">On Orders Above ₹999</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-neutral-100 text-neutral-900 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-rotate-left"></i></div>
+          <div>
+            <span class="font-extrabold text-neutral-900 block text-[11px]">Easy Returns</span>
+            <span class="text-[10px] text-neutral-500">15 Days Return</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-neutral-100 text-neutral-900 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-shield-check"></i></div>
+          <div>
+            <span class="font-extrabold text-neutral-900 block text-[11px]">Secure Payment</span>
+            <span class="text-[10px] text-neutral-500">100% Protected Payment</span>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <div class="w-10 h-10 bg-neutral-100 text-neutral-900 rounded-xl flex items-center justify-center text-lg"><i class="fa-solid fa-headset"></i></div>
+          <div>
+            <span class="font-extrabold text-neutral-900 block text-[11px]">Customer Support</span>
+            <span class="text-[10px] text-neutral-500">24/7 Live Support</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 6. TOP BRANDS STRIP -->
+  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-4">
+    <div class="bg-white rounded-2xl p-4 border border-neutral-200 flex items-center justify-between gap-6 overflow-x-auto no-scrollbar">
+      <span class="text-xs font-black uppercase tracking-wider text-neutral-400 shrink-0">Top Brands</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">ONLY</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">VERO MODA</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">JACK &amp; JONES</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">BIBA</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">PUMA</span>
+      <span class="brand-title font-extrabold text-sm tracking-widest text-neutral-800">NIKE</span>
+    </div>
+  </section>
+
+  <!-- 7. COMPLETE CATALOG STORE SECTION WITH FILTERS -->
+  <section id="catalogSection" class="max-w-7xl mx-auto px-4 sm:px-8 py-8 border-t border-neutral-200 mt-6">
+    <div class="flex items-center justify-between mb-4">
+      <div>
+        <h3 class="text-lg sm:text-2xl font-black text-neutral-900" id="catalogSectionTitle">Full Mall Storefront</h3>
+        <p class="text-xs text-neutral-500" id="itemCountDisplay">Showing all items</p>
+      </div>
+      <div class="flex items-center space-x-2">
+        <label class="text-xs font-bold text-neutral-500 uppercase">Sort:</label>
+        <select id="catalogSort" onchange="handleSort(this.value)" class="border border-neutral-200 rounded-xl px-3 py-1.5 text-xs font-bold bg-white focus:outline-none">
+          <option value="popular">Popularity</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+          <option value="discount">Biggest Discount</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- CATALOG GRID (INCLUDING HOME & LIVING) -->
+    <div id="fullCatalogGrid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+      <!-- Injected via JS -->
+    </div>
+  </section>
+
+  <!-- 8. SHOPPING BAG DRAWER -->
+  <div id="cartModal" class="fixed inset-0 z-50 bg-black/60 hidden flex justify-end">
+    <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl overflow-y-auto">
+      <div>
+        <div class="flex items-center justify-between border-b pb-4">
+          <h2 class="text-base font-black">Shopping Bag (<span id="cartCountTitle">0</span>)</h2>
+          <button onclick="toggleCart()" class="text-2xl font-bold text-neutral-400">&times;</button>
+        </div>
+        <div id="cartItemList" class="divide-y divide-neutral-100 my-4 max-h-[50vh] overflow-y-auto pr-1"></div>
+
+        <div class="bg-neutral-50 p-3.5 rounded-2xl border border-neutral-200 mt-2 space-y-2">
+          <label class="block text-[10px] font-black uppercase text-neutral-400">Apply Promo Coupon</label>
+          <div class="flex space-x-2">
+            <input type="text" id="couponInput" placeholder="ASF40" class="w-full text-xs uppercase px-3 py-2 border rounded-xl bg-white focus:outline-none">
+            <button onclick="applyCoupon()" class="bg-black hover:bg-rose-600 text-white text-xs font-bold px-4 py-2 rounded-xl transition">Apply</button>
           </div>
           <p id="couponMsg" class="text-[10px] font-bold hidden"></p>
         </div>
       </div>
 
-      <div class="border-t pt-3 space-y-2">
+      <div class="border-t pt-4 space-y-3">
         <div class="space-y-1 text-xs text-neutral-600">
           <div class="flex justify-between"><span>Subtotal</span><span id="billSubtotal" class="font-bold text-neutral-900">₹0</span></div>
           <div class="flex justify-between text-green-700 font-bold"><span>Delivery</span><span>FREE</span></div>
-          <div class="flex justify-between text-sm font-black text-neutral-950 pt-1 border-t"><span>Total</span><span id="billTotal" class="text-rose-600">₹0</span></div>
+          <div class="flex justify-between text-sm font-black text-neutral-950 pt-2 border-t"><span>Total</span><span id="billTotal" class="text-rose-600">₹0</span></div>
         </div>
-        <button onclick="openCheckoutModal()" class="w-full bg-black hover:bg-rose-600 text-white font-bold text-xs uppercase py-3 rounded-xl shadow-md">
-          Place Order
+        <button onclick="openCheckoutModal()" class="w-full bg-black hover:bg-rose-600 text-white font-extrabold text-xs uppercase py-3.5 rounded-2xl shadow-lg transition">
+          Proceed to Order
         </button>
       </div>
     </div>
   </div>
 
-  <!-- 11. CHECKOUT MODAL -->
+  <!-- 9. DIRECT CHECKOUT MODAL -->
   <div id="checkoutModal" class="fixed inset-0 z-50 bg-black/70 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="text-xs font-black uppercase">Delivery Address</h3>
-        <button onclick="closeCheckoutModal()" class="text-xl font-bold text-neutral-400">&times;</button>
+    <div class="bg-white w-full max-w-lg rounded-3xl p-6 sm:p-8 shadow-2xl max-h-[90vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 class="text-base font-black">Order Delivery Details</h3>
+        <button onclick="closeCheckoutModal()" class="text-2xl font-bold text-neutral-400">&times;</button>
       </div>
-      <form onsubmit="processWebsiteOrder(event)" class="mt-3 space-y-2.5 text-xs">
-        <input type="text" id="custName" required placeholder="Full Name *" class="w-full p-2 border rounded-lg bg-neutral-50">
-        <input type="tel" id="custPhone" required placeholder="Mobile Number *" class="w-full p-2 border rounded-lg bg-neutral-50">
-        <textarea id="custAddress" required rows="2" placeholder="Door No, Street, City, Pincode *" class="w-full p-2 border rounded-lg bg-neutral-50"></textarea>
-        <button type="submit" class="w-full bg-rose-600 text-white font-bold text-xs uppercase py-2.5 rounded-xl shadow-md">
-          Confirm &amp; Place Order
+      <form onsubmit="processWebsiteOrder(event)" class="mt-4 space-y-3 text-xs">
+        <input type="text" id="custName" required placeholder="Full Name *" class="w-full p-3 border rounded-xl bg-neutral-50">
+        <input type="tel" id="custPhone" required placeholder="10-digit Phone Number *" class="w-full p-3 border rounded-xl bg-neutral-50">
+        <textarea id="custAddress" required rows="2" placeholder="House/Flat No, Landmark, City, Pincode *" class="w-full p-3 border rounded-xl bg-neutral-50"></textarea>
+        <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-black text-xs uppercase py-3.5 rounded-2xl shadow-lg transition">
+          Confirm Order
         </button>
       </form>
     </div>
   </div>
 
-  <!-- 12. WISHLIST MODAL -->
+  <!-- 10. WISHLIST MODAL -->
   <div id="wishlistModal" class="fixed inset-0 z-50 bg-black/60 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-sm rounded-2xl p-5 shadow-2xl max-h-[80vh] overflow-y-auto">
-      <div class="flex justify-between items-center border-b pb-2">
-        <h3 class="text-xs font-black uppercase">Saved Wishlist (<span id="wishlistTotalCount">0</span>)</h3>
-        <button onclick="toggleWishlistModal()" class="text-xl font-bold text-neutral-400">&times;</button>
+    <div class="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl max-h-[80vh] overflow-y-auto">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 class="text-sm font-black">Saved Wishlist (<span id="wishlistTotalCount">0</span>)</h3>
+        <button onclick="toggleWishlistModal()" class="text-2xl font-bold text-neutral-400">&times;</button>
       </div>
-      <div id="wishlistItemsList" class="divide-y divide-neutral-100 my-2"></div>
+      <div id="wishlistItemsList" class="divide-y divide-neutral-100 my-4"></div>
     </div>
   </div>
 
-  <!-- 13. SECRET ADMIN CRM (PIN: 1234) -->
-  <div id="adminOrdersModal" class="fixed inset-0 z-50 bg-black/85 hidden flex items-center justify-center p-4">
-    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl flex flex-col max-h-[85vh] overflow-hidden">
-      <div class="p-3 border-b flex justify-between items-center bg-black text-white">
-        <h2 class="text-xs font-black">Orders CRM</h2>
-        <button onclick="closeAdminOrdersModal()" class="text-xl font-bold">&times;</button>
+  <!-- 11. SECRET ADMIN ORDERS CRM (PIN: 1234) -->
+  <div id="adminOrdersModal" class="fixed inset-0 z-50 bg-black/85 hidden flex items-center justify-center p-4 sm:p-8">
+    <div class="bg-white w-full max-w-4xl rounded-3xl shadow-2xl flex flex-col max-h-[90vh] overflow-hidden">
+      <div class="p-4 border-b flex justify-between items-center bg-black text-white">
+        <h2 class="text-sm font-black">AS FASHIONS — Private Orders CRM Stream</h2>
+        <button onclick="closeAdminOrdersModal()" class="text-2xl font-bold">&times;</button>
       </div>
-      <div class="p-3 flex-1 overflow-auto" id="adminOrdersContainer"></div>
+      <div class="p-4 flex-1 overflow-auto" id="adminOrdersContainer"></div>
     </div>
   </div>
 
-  <!-- JAVASCRIPT ENGINE -->
+  <!-- FOOTER -->
+  <footer class="bg-neutral-950 text-white py-12 px-4 sm:px-8 mt-16 border-t border-neutral-800 text-center">
+    <span class="brand-title text-xl font-black tracking-wider">AS FASHIONS MALL</span>
+    <p class="text-xs text-neutral-500 mt-1">Complete Family Fashion, Footwear &amp; Home Living Destination</p>
+    <button onclick="promptAdminPin()" class="mt-4 text-[10px] text-neutral-600 hover:text-neutral-300 font-bold uppercase tracking-wider">
+      🔒 Store Admin Login
+    </button>
+  </footer>
+
+  <!-- SCRIPT ENGINE -->
   <script>
     const products = [
-      { id: "M101", name: "Men's Luxury Oxford Cotton Shirt", category: "men", subCategory: "formal-shirts", price: 899, mrp: 1699, rating: 4.9, reviews: 240, tag: "Best Seller", image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"] },
-      { id: "M102", name: "Men's Slim Fit Stretch Selvedge Jeans", category: "men", subCategory: "denim", price: 1099, mrp: 2199, rating: 4.8, reviews: 98, tag: "Trending", image: "https://images.unsplash.com/photo-1542272604-780c96856484?w=500&auto=format&fit=crop&q=80", sizes: ["30", "32", "34", "36"] },
-      { id: "W201", name: "Women's Pure Zari Banarasi Silk Saree", category: "women", subCategory: "silk-sarees", price: 1599, mrp: 3499, rating: 5.0, reviews: 310, tag: "Exclusive", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=500&auto=format&fit=crop&q=80", sizes: ["Free Size"] },
-      { id: "W202", name: "Women's Handcrafted Chikankari Kurti Set", category: "women", subCategory: "kurtis", price: 899, mrp: 1799, rating: 4.7, reviews: 88, tag: "Popular", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"] },
-      { id: "K301", name: "Boys' Royal Velvet Sherwani Ensemble", category: "kids", subCategory: "boys-ethnic", price: 849, mrp: 1599, rating: 4.9, reviews: 78, tag: "Festive", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&auto=format&fit=crop&q=80", sizes: ["3-4Y", "5-6Y", "7-8Y"] },
-      { id: "K302", name: "Girls' Layered Sparkle Princess Frock", category: "kids", subCategory: "girls-frocks", price: 799, mrp: 1499, rating: 4.9, reviews: 160, tag: "Trending", image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=500&auto=format&fit=crop&q=80", sizes: ["2-3Y", "4-5Y", "6-7Y"] },
-      { id: "F401", name: "Air Cushion Lightweight Sports Sneakers", category: "footwear", subCategory: "sneakers", price: 1499, mrp: 2999, rating: 4.9, reviews: 420, tag: "Hot Seller", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80", sizes: ["7", "8", "9", "10"] },
-      { id: "F402", name: "Women's Comfort Block Heel Sandals", category: "footwear", subCategory: "heels", price: 899, mrp: 1799, rating: 4.6, reviews: 110, tag: "Top Rated", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=80", sizes: ["5", "6", "7", "8"] }
+      // BEST OF / FASHION
+      { id: "BF-1", brand: "ONLY", name: "Women Black Flared Dress", category: "women", subCategory: "western", price: 1499, mrp: 2499, badge: "NEW", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=500&auto=format&fit=crop&q=80", rating: 4.8, reviews: 190 },
+      { id: "BF-2", brand: "BIBA", name: "Floral Embroidered Kurta Set", category: "women", subCategory: "sarees", price: 1049, mrp: 1499, badge: "-30%", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=500&auto=format&fit=crop&q=80", rating: 4.9, reviews: 310 },
+      { id: "BF-3", brand: "JACK & JONES", name: "Men Slim Fit Casual Shirt", category: "men", subCategory: "formal-shirts", price: 1799, mrp: 2799, badge: "NEW", image: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=500&auto=format&fit=crop&q=80", rating: 4.7, reviews: 140 },
+      { id: "BF-4", brand: "ONLY", name: "Women High-Rise Stretch Jeans", category: "women", subCategory: "western", price: 1349, mrp: 1799, badge: "-25%", image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=500&auto=format&fit=crop&q=80", rating: 4.8, reviews: 94 },
+      { id: "BF-5", brand: "ROADSTER", name: "Men's Crewneck Cotton Sweatshirt", category: "men", subCategory: "formal-shirts", price: 999, mrp: 1599, badge: "NEW", image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=500&auto=format&fit=crop&q=80", rating: 4.9, reviews: 215 },
+      
+      // HOME & LIVING SECTION (REQUESTED IN DETAIL)
+      { id: "HL-1", brand: "SPACES", name: "Luxury 300 TC Pure Cotton Bedsheet Set", category: "home-living", subCategory: "bedsheets", price: 1299, mrp: 2499, badge: "Home Special", image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=500&auto=format&fit=crop&q=80", rating: 4.9, reviews: 180 },
+      { id: "HL-2", brand: "D'DECOR", name: "Jacquard Room Darkening Long Curtains (Set of 2)", category: "home-living", subCategory: "curtains", price: 1499, mrp: 2999, badge: "-50%", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=500&auto=format&fit=crop&q=80", rating: 4.8, reviews: 120 },
+      { id: "HL-3", brand: "HOME CENTRE", name: "Velvet Embroidered Cushion Covers (Pack of 5)", category: "home-living", subCategory: "decor", price: 699, mrp: 1399, badge: "Best Seller", image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=500&auto=format&fit=crop&q=80", rating: 4.7, reviews: 88 },
+      { id: "HL-4", brand: "TRIDENT", name: "Ultra Soft 600 GSM Cotton Bath Towel Set", category: "home-living", subCategory: "bedsheets", price: 899, mrp: 1799, badge: "Top Rated", image: "https://images.unsplash.com/photo-1616627547584-bf28cee262db?w=500&auto=format&fit=crop&q=80", rating: 4.9, reviews: 310 },
+      
+      // FOOTWEAR
+      { id: "FW-1", brand: "NIKE", name: "Air Cushion Lightweight Running Sneakers", category: "footwear", subCategory: "sneakers", price: 1999, mrp: 3999, badge: "Hot Seller", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=500&auto=format&fit=crop&q=80", rating: 5.0, reviews: 450 },
+      { id: "FW-2", brand: "ALDO", name: "Women's Elegant Block Heel Sandals", category: "footwear", subCategory: "heels", price: 1299, mrp: 2499, badge: "Trending", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=500&auto=format&fit=crop&q=80", rating: 4.7, reviews: 112 },
+      
+      // KIDS
+      { id: "KD-1", brand: "MAX", name: "Boys' Royal Velvet Sherwani Ensemble", category: "kids", subCategory: "kids-wear", price: 849, mrp: 1599, badge: "Festive", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=500&auto=format&fit=crop&q=80", rating: 4.9, reviews: 78 }
     ];
 
-    let currentMainCat = 'all';
-    let currentSubCat = 'all';
+    let activeDept = 'all';
+    let activeSub = 'all';
+    let currentSearch = '';
     let currentSort = 'popular';
-    let activeSize = null;
-    let selectedSizes = {};
     let discountAmount = 0;
 
     let cart = JSON.parse(localStorage.getItem('asfashions_cart') || '[]');
     let wishlist = JSON.parse(localStorage.getItem('asfashions_wishlist') || '[]');
 
-    function renderCatalog() {
+    function renderGrids() {
+      // 1. Render Center "Best Of" Showcase (First 3-6 items)
+      const bestContainer = document.getElementById('bestGrid');
+      bestContainer.innerHTML = '';
+      products.slice(0, 3).forEach(p => {
+        const isFav = wishlist.includes(p.id);
+        bestContainer.innerHTML += `
+          <div class="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs flex flex-col justify-between group">
+            <div>
+              <div class="relative aspect-[3/4] bg-neutral-100">
+                <img src="${p.image}" class="w-full h-full object-cover">
+                <span class="absolute top-2 left-2 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 rounded">${p.badge}</span>
+                <button onclick="toggleWishlistItem('${p.id}')" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
+                  <i class="fa-${isFav ? 'solid text-rose-600' : 'regular text-neutral-600'} fa-heart text-xs"></i>
+                </button>
+                <button onclick="addToBag('${p.id}')" class="absolute bottom-2 right-2 w-8 h-8 rounded-full bg-white shadow-md flex items-center justify-center hover:bg-black hover:text-white transition">
+                  <i class="fa-solid fa-bag-shopping text-xs"></i>
+                </button>
+              </div>
+              <div class="p-3 space-y-1">
+                <span class="text-[10px] font-black uppercase tracking-wider text-neutral-900 block">${p.brand}</span>
+                <h4 class="text-xs font-semibold text-neutral-600 truncate">${p.name}</h4>
+                <div class="flex items-baseline space-x-1.5 pt-0.5">
+                  <span class="text-xs font-black text-black">₹${p.price}</span>
+                  <span class="text-[10px] text-neutral-400 line-through">₹${p.mrp}</span>
+                  <span class="text-[9px] font-black text-rose-600">${Math.round(((p.mrp - p.price)/p.mrp)*100)}% OFF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      });
+
+      // 2. Render Full Catalog (With Home & Living included)
       let list = products.filter(p => {
-        const matchesCat = currentMainCat === 'all' || p.category === currentMainCat;
-        const matchesSub = currentSubCat === 'all' || p.subCategory === currentSubCat;
-        const matchesSize = !activeSize || p.sizes.includes(activeSize);
-        return matchesCat && matchesSub && matchesSize;
+        const matchesDept = activeDept === 'all' || p.category === activeDept;
+        const matchesSub = activeSub === 'all' || p.subCategory === activeSub;
+        const matchesSearch = p.name.toLowerCase().includes(currentSearch.toLowerCase()) || p.brand.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchesDept && matchesSub && matchesSearch;
       });
 
       if (currentSort === 'low-high') list.sort((a, b) => a.price - b.price);
       if (currentSort === 'high-low') list.sort((a, b) => b.price - a.price);
       if (currentSort === 'discount') list.sort((a, b) => ((b.mrp - b.price)/b.mrp) - ((a.mrp - a.price)/a.mrp));
 
-      const grid = document.getElementById('productGrid');
-      document.getElementById('itemCountDisplay').innerText = `${list.length} styles`;
+      const catalogGrid = document.getElementById('fullCatalogGrid');
+      document.getElementById('itemCountDisplay').innerText = `Showing ${list.length} curated products`;
 
-      grid.innerHTML = '';
+      catalogGrid.innerHTML = '';
       list.forEach(p => {
-        const isWishlisted = wishlist.includes(p.id);
-        const curSize = selectedSizes[p.id] || p.sizes[0];
-
-        grid.innerHTML += `
-          <div class="bg-white rounded-xl overflow-hidden border border-neutral-200 shadow-2xs flex flex-col justify-between">
+        const isFav = wishlist.includes(p.id);
+        catalogGrid.innerHTML += `
+          <div class="bg-white rounded-2xl overflow-hidden border border-neutral-200 shadow-xs flex flex-col justify-between group">
             <div>
               <div class="relative aspect-[3/4] bg-neutral-100">
                 <img src="${p.image}" class="w-full h-full object-cover">
-                <span class="absolute top-1.5 left-1.5 bg-black text-white text-[7px] font-black uppercase px-1.5 py-0.5 rounded">${p.tag}</span>
-                <button onclick="toggleWishlistItem('${p.id}')" class="absolute top-1.5 right-1.5 w-6 h-6 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
-                  <i class="fa-${isWishlisted ? 'solid text-rose-600' : 'regular text-neutral-600'} fa-heart text-[10px]"></i>
+                <span class="absolute top-2 left-2 bg-black text-white text-[8px] font-black uppercase px-2 py-0.5 rounded">${p.badge}</span>
+                <button onclick="toggleWishlistItem('${p.id}')" class="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow-sm flex items-center justify-center">
+                  <i class="fa-${isFav ? 'solid text-rose-600' : 'regular text-neutral-600'} fa-heart text-xs"></i>
                 </button>
               </div>
-
-              <div class="p-2.5 space-y-1">
-                <div class="flex items-center space-x-1 text-[8px] text-amber-500 font-bold">
-                  <span>★ ${p.rating}</span><span class="text-neutral-400">(${p.reviews})</span>
-                </div>
-                <h3 class="text-xs font-bold text-neutral-900 truncate">${p.name}</h3>
-                <div class="flex items-baseline space-x-1">
+              <div class="p-3 space-y-1">
+                <span class="text-[10px] font-black uppercase tracking-wider text-neutral-900 block">${p.brand}</span>
+                <h4 class="text-xs font-semibold text-neutral-700 truncate">${p.name}</h4>
+                <div class="flex items-baseline space-x-1.5">
                   <span class="text-xs font-black text-black">₹${p.price}</span>
-                  <span class="text-[9px] text-neutral-400 line-through">₹${p.mrp}</span>
-                  <span class="text-[8px] font-black text-rose-600">${Math.round(((p.mrp - p.price)/p.mrp)*100)}% OFF</span>
-                </div>
-                <div class="pt-0.5 flex flex-wrap gap-1">
-                  ${p.sizes.map(s => `
-                    <button onclick="selectProductSize('${p.id}', '${s}')" class="text-[7px] px-1 py-0.5 rounded border font-bold ${curSize === s ? 'bg-black text-white border-black' : 'bg-neutral-50 text-neutral-600 border-neutral-200'}">
-                      ${s}
-                    </button>
-                  `).join('')}
+                  <span class="text-[10px] text-neutral-400 line-through">₹${p.mrp}</span>
+                  <span class="text-[9px] font-black text-rose-600">${Math.round(((p.mrp - p.price)/p.mrp)*100)}% OFF</span>
                 </div>
               </div>
             </div>
-
-            <div class="p-2.5 pt-0">
-              <button onclick="addToBag('${p.id}')" class="w-full bg-neutral-900 hover:bg-rose-600 text-white text-[10px] font-black py-1.5 rounded-lg uppercase tracking-wider transition">
+            <div class="p-3 pt-0">
+              <button onclick="addToBag('${p.id}')" class="w-full bg-black hover:bg-rose-600 text-white text-xs font-bold py-2 rounded-xl transition">
                 Add to Bag
               </button>
             </div>
           </div>
         `;
       });
+
       updateBadges();
     }
 
-    function setMainCategory(cat) {
-      currentMainCat = cat;
-      currentSubCat = 'all';
-      document.getElementById('activeFilterLabel').innerText = `${cat.toUpperCase()}`;
-      renderCatalog();
-    }
-
-    function filterVisualSubcategory(cat, sub) {
-      currentMainCat = cat;
-      currentSubCat = sub;
-      document.getElementById('activeFilterLabel').innerText = `${sub.replace('-', ' ').toUpperCase()}`;
-      renderCatalog();
+    function filterByDept(dept) {
+      activeDept = dept;
+      activeSub = 'all';
+      document.querySelectorAll('.nav-dept-btn').forEach(b => {
+        if(b.dataset.dept === dept) {
+          b.className = 'nav-dept-btn text-rose-600 border-b-2 border-rose-600 py-2 transition font-extrabold';
+        } else {
+          b.className = 'nav-dept-btn hover:text-rose-600 py-2 transition font-bold text-neutral-700';
+        }
+      });
+      document.getElementById('catalogSectionTitle').innerText = `${dept.toUpperCase()} Department`;
+      renderGrids();
       document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
     }
 
-    function selectProductSize(id, s) { selectedSizes[id] = s; renderCatalog(); }
-    function filterBySize(s) { activeSize = activeSize === s ? null : s; renderCatalog(); }
-    function resetCatalog() { currentMainCat = 'all'; currentSubCat = 'all'; activeSize = null; renderCatalog(); }
+    function filterSub(sub) {
+      activeSub = sub;
+      activeDept = 'all';
+      renderGrids();
+      document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' });
+    }
 
-    function openSortDrawer() { document.getElementById('sortDrawer').classList.remove('hidden'); }
-    function closeSortDrawer() { document.getElementById('sortDrawer').classList.add('hidden'); }
-    function selectSortOption(val) { currentSort = val; closeSortDrawer(); renderCatalog(); }
-
-    function openFilterDrawer() { document.getElementById('filterDrawer').classList.remove('hidden'); }
-    function closeFilterDrawer() { document.getElementById('filterDrawer').classList.add('hidden'); }
+    function handleSearch(val) { currentSearch = val; renderGrids(); }
+    function handleSort(val) { currentSort = val; renderGrids(); }
+    function scrollToCatalog() { document.getElementById('catalogSection').scrollIntoView({ behavior: 'smooth' }); }
 
     function toggleWishlistItem(id) {
       if(wishlist.includes(id)) wishlist = wishlist.filter(i => i !== id);
       else wishlist.push(id);
       localStorage.setItem('asfashions_wishlist', JSON.stringify(wishlist));
-      renderCatalog();
+      renderGrids();
     }
 
     function toggleWishlistModal() {
@@ -489,7 +598,7 @@
           const item = products.find(p => p.id === id);
           if(item) {
             listEl.innerHTML += `
-              <div class="py-2 flex items-center justify-between gap-2">
+              <div class="py-2.5 flex items-center justify-between gap-2">
                 <img src="${item.image}" class="w-10 h-10 object-cover rounded border">
                 <div class="flex-1">
                   <h4 class="text-xs font-bold text-neutral-900 truncate">${item.name}</h4>
@@ -506,10 +615,9 @@
 
     function addToBag(id) {
       const p = products.find(i => i.id === id);
-      const chosenSize = selectedSizes[id] || p.sizes[0];
-      const existing = cart.find(i => i.id === id && i.selectedSize === chosenSize);
+      const existing = cart.find(i => i.id === id);
       if(existing) existing.qty += 1;
-      else cart.push({ ...p, qty: 1, selectedSize: chosenSize });
+      else cart.push({ ...p, qty: 1 });
       persistCart();
       toggleCart(true);
     }
@@ -547,29 +655,16 @@
             <img src="${item.image}" class="w-10 h-10 object-cover rounded border">
             <div class="flex-1">
               <h4 class="text-xs font-bold text-neutral-900 truncate">${item.name}</h4>
-              <p class="text-[9px] text-neutral-500">₹${item.price} • Size: ${item.selectedSize}</p>
-              <div class="flex items-center space-x-1.5 mt-0.5">
-                <button onclick="modifyQty('${item.id}', '${item.selectedSize}', -1)" class="w-4 h-4 bg-neutral-100 rounded text-xs font-bold">-</button>
-                <span class="text-xs font-bold">${item.qty}</span>
-                <button onclick="modifyQty('${item.id}', '${item.selectedSize}', 1)" class="w-4 h-4 bg-neutral-100 rounded text-xs font-bold">+</button>
-              </div>
+              <p class="text-[9px] text-neutral-500">₹${item.price} x ${item.qty}</p>
             </div>
-            <button onclick="deleteItem('${item.id}', '${item.selectedSize}')" class="text-[9px] text-rose-600 font-bold">Remove</button>
+            <button onclick="deleteItem('${item.id}')" class="text-[10px] text-rose-600 font-bold">Remove</button>
           </div>
         `;
       });
     }
 
-    function modifyQty(id, size, delta) {
-      const item = cart.find(i => i.id === id && i.selectedSize === size);
-      if(!item) return;
-      item.qty += delta;
-      if(item.qty <= 0) cart = cart.filter(i => !(i.id === id && i.selectedSize === size));
-      persistCart();
-    }
-
-    function deleteItem(id, size) {
-      cart = cart.filter(i => !(i.id === id && i.selectedSize === size));
+    function deleteItem(id) {
+      cart = cart.filter(i => i.id !== id);
       persistCart();
     }
 
@@ -589,11 +684,11 @@
       if(code === 'ASF40') {
         discountAmount = Math.round(subtotal * 0.40);
         msg.innerText = `✓ Applied 40% (₹${discountAmount}) Discount!`;
-        msg.className = "text-[9px] font-bold text-green-600 block";
+        msg.className = "text-[10px] font-bold text-green-600 block";
       } else {
         discountAmount = 0;
         msg.innerText = "✕ Invalid Code. Use: ASF40";
-        msg.className = "text-[9px] font-bold text-rose-600 block";
+        msg.className = "text-[10px] font-bold text-rose-600 block";
       }
       renderCartUI();
     }
@@ -634,11 +729,8 @@
 
     function promptAdminPin() {
       const pin = prompt("Enter 4-Digit Security PIN:");
-      if(pin === "1234") {
-        openAdminOrdersModal();
-      } else if(pin !== null) {
-        alert("Invalid Security PIN!");
-      }
+      if(pin === "1234") openAdminOrdersModal();
+      else if(pin !== null) alert("Invalid Security PIN!");
     }
 
     function openAdminOrdersModal() {
@@ -674,8 +766,8 @@
     }
     function closeAdminOrdersModal() { document.getElementById('adminOrdersModal').classList.add('hidden'); }
 
-    // INITIAL RENDER
-    renderCatalog();
+    // Initial Load
+    renderGrids();
   </script>
 </body>
 </html>
