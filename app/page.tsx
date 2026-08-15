@@ -5,23 +5,16 @@ import {
   ShoppingBag,
   Heart,
   Search,
-  SlidersHorizontal,
   X,
-  Truck,
-  RotateCcw,
-  ShieldCheck,
-  Headphones,
   Star,
-  Check,
   ArrowRight,
-  Flame,
 } from "lucide-react";
 
 interface Product {
   id: string;
   brand: string;
   name: string;
-  category: "men" | "women" | "kids" | "footwear" | "home-living";
+  category: "men" | "women" | "kids";
   subCategory: string;
   price: number;
   mrp: number;
@@ -39,7 +32,7 @@ interface CartItem extends Product {
 }
 
 const PRODUCTS: Product[] = [
-  // APPAREL & FESTIVE
+  // WOMEN
   {
     id: "W-101",
     brand: "BIBA",
@@ -71,6 +64,23 @@ const PRODUCTS: Product[] = [
     sizes: ["S", "M", "L"],
   },
   {
+    id: "W-103",
+    brand: "VERO MODA",
+    name: "Embroidered Chikankari Anarkali Kurti",
+    category: "women",
+    subCategory: "kurtis",
+    price: 1199,
+    mrp: 2299,
+    badge: "TRENDING",
+    image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=600&auto=format&fit=crop&q=80",
+    rating: 4.9,
+    reviews: 145,
+    sizes: ["S", "M", "L", "XL"],
+  },
+  
+  // MEN
+  {
     id: "M-201",
     brand: "JACK & JONES",
     name: "Men Slim Fit Cotton Casual Shirt",
@@ -100,89 +110,25 @@ const PRODUCTS: Product[] = [
     reviews: 215,
     sizes: ["M", "L", "XL"],
   },
-  
-  // HOME & LIVING (DETAILED CATALOG)
   {
-    id: "HL-301",
-    brand: "SPACES",
-    name: "Luxury 300 TC Pure Cotton Double Bedsheet",
-    category: "home-living",
-    subCategory: "bedsheets",
-    price: 1299,
-    mrp: 2499,
-    badge: "HOME SPECIAL",
-    image: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600&auto=format&fit=crop&q=80",
-    rating: 4.9,
-    reviews: 180,
-    sizes: ["King", "Queen"],
-  },
-  {
-    id: "HL-302",
-    brand: "D'DECOR",
-    name: "Jacquard Room Darkening Long Curtains (Set of 2)",
-    category: "home-living",
-    subCategory: "curtains",
-    price: 1499,
-    mrp: 2999,
-    badge: "-50% OFF",
-    image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1522771739844-6a9f6d5f14af?w=600&auto=format&fit=crop&q=80",
+    id: "M-203",
+    brand: "LEVIS",
+    name: "Men Slim Fit Selvedge Denim Jeans",
+    category: "men",
+    subCategory: "denim",
+    price: 1899,
+    mrp: 3299,
+    badge: "CLASSIC",
+    image: "https://images.unsplash.com/photo-1542272604-780c96856484?w=600&auto=format&fit=crop&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=600&auto=format&fit=crop&q=80",
     rating: 4.8,
-    reviews: 120,
-    sizes: ["7ft", "9ft"],
-  },
-  {
-    id: "HL-303",
-    brand: "HOME CENTRE",
-    name: "Velvet Embroidered Cushion Covers (Pack of 5)",
-    category: "home-living",
-    subCategory: "decor",
-    price: 699,
-    mrp: 1399,
-    badge: "BEST SELLER",
-    image: "https://images.unsplash.com/photo-1584100936595-c0654b55a2e2?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1513694203232-719a280e022f?w=600&auto=format&fit=crop&q=80",
-    rating: 4.7,
-    reviews: 88,
-    sizes: ["16x16"],
-  },
-
-  // FOOTWEAR
-  {
-    id: "FW-401",
-    brand: "NIKE",
-    name: "Air Cushion Lightweight Sports Running Sneakers",
-    category: "footwear",
-    subCategory: "sneakers",
-    price: 1999,
-    mrp: 3999,
-    badge: "TOP SELLER",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=600&auto=format&fit=crop&q=80",
-    rating: 5.0,
-    reviews: 450,
-    sizes: ["7", "8", "9", "10"],
-  },
-  {
-    id: "FW-402",
-    brand: "ALDO",
-    name: "Women's Elegant Strappy Block Heel Sandals",
-    category: "footwear",
-    subCategory: "heels",
-    price: 1299,
-    mrp: 2499,
-    badge: "TRENDING",
-    image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=600&auto=format&fit=crop&q=80",
-    rating: 4.7,
-    reviews: 112,
-    sizes: ["5", "6", "7", "8"],
+    reviews: 98,
+    sizes: ["30", "32", "34", "36"],
   },
 
   // KIDS
   {
-    id: "KD-501",
+    id: "KD-301",
     brand: "MAX",
     name: "Boys' Royal Velvet Sherwani Ensemble",
     category: "kids",
@@ -195,6 +141,21 @@ const PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 78,
     sizes: ["3-4Y", "5-6Y", "7-8Y"],
+  },
+  {
+    id: "KD-302",
+    brand: "MINIKLUB",
+    name: "Girls' Layered Princess Party Frock",
+    category: "kids",
+    subCategory: "kids-wear",
+    price: 799,
+    mrp: 1499,
+    badge: "BESTSELLER",
+    image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop&q=80",
+    hoverImage: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=600&auto=format&fit=crop&q=80",
+    rating: 4.9,
+    reviews: 160,
+    sizes: ["2-3Y", "4-5Y", "6-7Y"],
   },
 ];
 
@@ -210,7 +171,6 @@ export default function HomePage() {
   const [discount, setDiscount] = useState(0);
   const [couponMsg, setCouponMsg] = useState<{ text: string; error: boolean } | null>(null);
 
-  // Form State
   const [custName, setCustName] = useState("");
   const [custPhone, setCustPhone] = useState("");
   const [custAddress, setCustAddress] = useState("");
@@ -298,22 +258,12 @@ export default function HomePage() {
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const totalPayable = Math.max(0, subtotal - discount);
 
-  const handleWhatsAppCheckout = (e: React.FormEvent) => {
+  const handleOrderSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const orderId = `ASF-${Math.floor(100000 + Math.random() * 900000)}`;
-    const itemsList = cart
-      .map((i) => `• ${i.name} (${i.selectedSize}) x ${i.qty} = ₹${i.price * i.qty}`)
-      .join("%0A");
-
-    const message = `*NEW ORDER: ${orderId}*%0A%0A*Customer:* ${custName}%0A*Phone:* ${custPhone}%0A*Address:* ${custAddress}%0A%0A*Items:*%0A${itemsList}%0A%0A*Total Amount:* ₹${totalPayable}%0A*Status:* Confirmed (Cash on Delivery)`;
-    
-    // Save to Local/Cloud Store
     saveCart([]);
     setIsCheckoutOpen(false);
-    
-    // Open WhatsApp Direct with Order Details
-    window.open(`https://wa.me/919999999999?text=${message}`, "_blank");
-    alert(`Order Placed! ID: ${orderId}`);
+    alert(`Order Placed Successfully!\nOrder ID: ${orderId}\nCustomer: ${custName}\nTotal Payable: ₹${totalPayable}`);
   };
 
   return (
@@ -322,7 +272,7 @@ export default function HomePage() {
       <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase flex justify-center items-center gap-2">
         <span className="w-1.5 h-1.5 rounded-full bg-rose-500 animate-pulse"></span>
         <span>
-          NEXT.JS GRAND MALL • 40% OFF CODE: <strong className="text-rose-400">ASF40</strong> • FREE PAN-INDIA EXPRESS SHIPPING
+          MEN • WOMEN • KIDS FASHION MALL • 40% OFF CODE: <strong className="text-rose-400">ASF40</strong>
         </span>
       </div>
 
@@ -349,14 +299,12 @@ export default function HomePage() {
             </div>
           </div>
 
-          <nav className="hidden xl:flex items-center space-x-7 text-xs font-black uppercase tracking-wider text-neutral-800">
+          <nav className="hidden xl:flex items-center space-x-8 text-xs font-black uppercase tracking-wider text-neutral-800">
             {[
               { id: "all", label: "All Mall" },
               { id: "men", label: "Men" },
               { id: "women", label: "Women" },
               { id: "kids", label: "Kids" },
-              { id: "footwear", label: "Footwear 👟" },
-              { id: "home-living", label: "Home & Living 🏠" },
             ].map((d) => (
               <button
                 key={d.id}
@@ -380,7 +328,7 @@ export default function HomePage() {
               type="text"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search Sarees, Shirts, Bedsheets..."
+              placeholder="Search Sarees, Shirts, Kurtis..."
               className="w-full bg-neutral-100 pl-10 pr-4 py-2.5 rounded-full text-xs font-medium focus:bg-white focus:outline-none border border-transparent focus:border-black transition"
             />
             <Search className="absolute left-3.5 top-3.5 h-3.5 w-3.5 text-neutral-400" />
@@ -409,7 +357,7 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* 3. Hero Showcase with Home & Living */}
+      {/* 3. Hero Showcase (Men, Women, Kids Only) */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-6">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 bg-white rounded-3xl border border-neutral-200/80 p-5 sm:p-7 shadow-xs">
           <div className="lg:col-span-3 border-r border-neutral-100 pr-4 space-y-1.5 text-xs font-semibold text-neutral-700">
@@ -423,7 +371,7 @@ export default function HomePage() {
               }}
               className="w-full text-left p-2 rounded-xl hover:bg-neutral-50 flex justify-between items-center"
             >
-              <span>Indian &amp; Ethnic Wear</span>
+              <span>Pure Silk Sarees</span>
               <ArrowRight className="h-3 w-3 text-neutral-400" />
             </button>
             <button
@@ -433,7 +381,7 @@ export default function HomePage() {
               }}
               className="w-full text-left p-2 rounded-xl hover:bg-neutral-50 flex justify-between items-center"
             >
-              <span>Western Dresses</span>
+              <span>Western &amp; Party Dresses</span>
               <ArrowRight className="h-3 w-3 text-neutral-400" />
             </button>
             <button
@@ -443,37 +391,27 @@ export default function HomePage() {
               }}
               className="w-full text-left p-2 rounded-xl hover:bg-neutral-50 flex justify-between items-center"
             >
-              <span>Men's Formal Shirts</span>
+              <span>Men's Formal &amp; Casual Shirts</span>
               <ArrowRight className="h-3 w-3 text-neutral-400" />
             </button>
             <button
               onClick={() => {
-                setSelectedDept("home-living");
-                setSelectedSub("bedsheets");
-              }}
-              className="w-full text-left p-2 rounded-xl hover:bg-emerald-50 text-emerald-800 font-bold flex justify-between items-center"
-            >
-              <span>Home: Luxury Bedsheets</span>
-              <ArrowRight className="h-3 w-3 text-emerald-600" />
-            </button>
-            <button
-              onClick={() => {
-                setSelectedDept("home-living");
-                setSelectedSub("curtains");
-              }}
-              className="w-full text-left p-2 rounded-xl hover:bg-emerald-50 text-emerald-800 font-bold flex justify-between items-center"
-            >
-              <span>Home: Curtains &amp; Drapes</span>
-              <ArrowRight className="h-3 w-3 text-emerald-600" />
-            </button>
-            <button
-              onClick={() => {
-                setSelectedDept("footwear");
-                setSelectedSub("sneakers");
+                setSelectedDept("men");
+                setSelectedSub("denim");
               }}
               className="w-full text-left p-2 rounded-xl hover:bg-neutral-50 flex justify-between items-center"
             >
-              <span>Footwear: Running Shoes</span>
+              <span>Men's Selvedge Denim</span>
+              <ArrowRight className="h-3 w-3 text-neutral-400" />
+            </button>
+            <button
+              onClick={() => {
+                setSelectedDept("kids");
+                setSelectedSub("kids-wear");
+              }}
+              className="w-full text-left p-2 rounded-xl hover:bg-neutral-50 flex justify-between items-center"
+            >
+              <span>Kids' Festive &amp; Party Wear</span>
               <ArrowRight className="h-3 w-3 text-neutral-400" />
             </button>
           </div>
@@ -481,14 +419,13 @@ export default function HomePage() {
           <div className="lg:col-span-9 flex items-center justify-between bg-gradient-to-r from-neutral-100 via-neutral-50 to-white rounded-2xl p-6 sm:p-8">
             <div className="space-y-3 max-w-sm">
               <span className="text-[10px] uppercase tracking-[0.3em] font-extrabold text-neutral-500">
-                Curated Season
+                Exclusive Collection
               </span>
               <h1 className="text-3xl sm:text-5xl font-serif leading-tight">
                 NEW STYLE
               </h1>
               <p className="text-xs text-neutral-600">
-                Premium fashion, footwear and home living catalog at factory
-                prices.
+                Handcrafted sarees, modern menswear, and designer kids apparel.
               </p>
               <span className="text-sm font-extrabold text-neutral-900 block">
                 UP TO <strong className="text-[#ff3f6c]">60% OFF</strong>
@@ -502,7 +439,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. Catalog Grid */}
+      {/* 4. Products Catalog Grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-8 py-8 border-t border-neutral-200 mt-4">
         <div className="flex justify-between items-center mb-6">
           <div>
@@ -629,7 +566,6 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Coupon Box */}
               <div className="bg-neutral-50 p-3 rounded-xl border space-y-2">
                 <label className="text-[10px] font-black uppercase text-neutral-400">
                   Promo Coupon
@@ -701,7 +637,7 @@ export default function HomePage() {
                 <X className="h-5 w-5 text-neutral-400" />
               </button>
             </div>
-            <form onSubmit={handleWhatsAppCheckout} className="mt-4 space-y-3 text-xs">
+            <form onSubmit={handleOrderSubmit} className="mt-4 space-y-3 text-xs">
               <input
                 type="text"
                 required
@@ -723,14 +659,14 @@ export default function HomePage() {
                 rows={2}
                 value={custAddress}
                 onChange={(e) => setCustAddress(e.target.value)}
-                placeholder="Complete Door Address, City, Pincode *"
+                placeholder="Door Address, City, Pincode *"
                 className="w-full p-2.5 border rounded-xl bg-neutral-50"
               ></textarea>
               <button
                 type="submit"
                 className="w-full bg-[#ff3f6c] text-white font-bold py-3 rounded-xl text-xs uppercase shadow-md hover:bg-rose-700 transition"
               >
-                Place Order (COD / WhatsApp)
+                Confirm Order (COD)
               </button>
             </form>
           </div>
