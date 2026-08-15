@@ -5,16 +5,11 @@ import {
   ShoppingBag,
   Heart,
   Search,
-  SlidersHorizontal,
-  ArrowUpDown,
   X,
   Star,
-  Flame,
-  ShieldCheck,
-  RotateCcw,
   Truck,
+  RotateCcw,
   Zap,
-  Check,
 } from "lucide-react";
 
 interface Product {
@@ -131,14 +126,11 @@ export default function HomePage() {
   
   // Modals & Drawers
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isWishlistOpen, setIsWishlistOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
-  const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
-  const [isSortDrawerOpen, setIsSortDrawerOpen] = useState(false);
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [selectedSize, setSelectedSize] = useState<string>("");
 
-  const [sortOrder, setSortOrder] = useState("popular");
-  const [activeSizeFilter, setActiveSizeFilter] = useState<string | null>(null);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponMsg, setCouponMsg] = useState<{ text: string; error: boolean } | null>(null);
@@ -225,13 +217,8 @@ export default function HomePage() {
     const matchesSearch =
       p.name.toLowerCase().includes(search.toLowerCase()) ||
       p.brand.toLowerCase().includes(search.toLowerCase());
-    const matchesSize = !activeSizeFilter || p.sizes.includes(activeSizeFilter);
-    return matchesDept && matchesSub && matchesSearch && matchesSize;
+    return matchesDept && matchesSub && matchesSearch;
   });
-
-  if (sortOrder === "low-high") filteredProducts.sort((a, b) => a.price - b.price);
-  if (sortOrder === "high-low") filteredProducts.sort((a, b) => b.price - a.price);
-  if (sortOrder === "discount") filteredProducts.sort((a, b) => ((b.mrp - b.price) / b.mrp) - ((a.mrp - a.price) / a.mrp));
 
   const subtotal = cart.reduce((sum, item) => sum + item.price * item.qty, 0);
   const totalPayable = Math.max(0, subtotal - discount);
@@ -316,7 +303,7 @@ export default function HomePage() {
 
           <div className="flex items-center space-x-3 sm:space-x-4">
             <button
-              onClick={() => setSelectedDept("all")}
+              onClick={() => setIsWishlistOpen(true)}
               className="relative p-1.5 text-neutral-700 hover:text-[#ff3f6c] transition"
             >
               <Heart className="h-5 w-5" />
@@ -418,7 +405,72 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* 4. PRODUCT DETAIL MODAL (PDP QUICK VIEW) */}
+      {/* 4. WISHLIST DRAWER */}
+      {isWishlistOpen && (
+        <div className="fixed inset-0 z-50 bg-black/60 flex justify-end">
+          <div className="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
+            <div>
+              <div className="flex justify-between items-center border-b pb-4">
+                <h2 className="text-base font-black flex items-center gap-2">
+                  <Heart className="h-5 w-5 fill-[#ff3f6c] text-[#ff3f6c]" />
+                  My Wishlist ({wishlist.length})
+                </h2>
+                <button onClick={() => setIsWishlistOpen(false)}>
+                  <X className="h-6 w-6 text-neutral-400 hover:text-black" />
+                </button>
+              </div>
+
+              <div className="divide-y divide-neutral-100 my-4 max-h-[70vh] overflow-y-auto">
+                {wishlist.length === 0 ? (
+                  <div className="text-center py-16 text-neutral-400 text-xs font-medium">
+                    Your wishlist is empty. Tap the heart icon on any product to save it here!
+                  </div>
+                ) : (
+                  wishlist.map((id) => {
+                    const prod = PRODUCTS.find((p) => p.id === id);
+                    if (!prod) return null;
+                    return (
+                      <div key={prod.id} className="py-3 flex items-center justify-between gap-3">
+                        <img src={prod.image} className="w-14 h-18 object-cover rounded-xl" />
+                        <div className="flex-1">
+                          <h4 className="text-xs font-bold truncate">{prod.name}</h4>
+                          <p className="text-xs font-black text-black mt-0.5">₹{prod.price}</p>
+                        </div>
+                        <div className="flex flex-col gap-1 items-end">
+                          <button
+                            onClick={() => {
+                              addToCart(prod, prod.sizes[0]);
+                              toggleWishlist(prod.id);
+                            }}
+                            className="text-[10px] font-bold bg-black text-white px-3 py-1.5 rounded-lg hover:bg-[#ff3f6c]"
+                          >
+                            Move to Bag
+                          </button>
+                          <button
+                            onClick={() => toggleWishlist(prod.id)}
+                            className="text-[10px] font-bold text-rose-600"
+                          >
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    );
+                  })
+                )}
+              </div>
+            </div>
+
+            <button
+              onClick={() => setIsWishlistOpen(false)}
+              className="w-full bg-neutral-100 text-neutral-800 text-xs font-bold py-3.5 rounded-2xl hover:bg-neutral-200 transition uppercase tracking-wider"
+            >
+              Continue Shopping
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* 5. PRODUCT DETAIL MODAL (PDP QUICK VIEW) */}
       {selectedProduct && (
         <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col sm:flex-row max-h-[90vh] overflow-y-auto">
@@ -482,7 +534,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* 5. SHOPPING BAG DRAWER */}
+      {/* 6. SHOPPING BAG DRAWER */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 flex justify-end">
           <div className="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
@@ -608,7 +660,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* 6. CHECKOUT MODAL */}
+      {/* 7. CHECKOUT MODAL */}
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl">
