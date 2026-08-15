@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AS FASHIONS | Complete Family Fashion Mall</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .glass-nav { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(12px); }
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans antialiased">
+
+  <!-- TOP PROMO BANNER -->
+  <div class="bg-gray-950 text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium tracking-wide flex justify-center items-center gap-2">
+    <span>✨ GRAND LAUNCH SALE: FLAT 40% OFF ON ALL CATEGORIES | FREE ALL-INDIA SHIPPING</span>
+  </div>
+
+  <!-- NAVBAR -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Logo -->
+        <a href="#" class="flex items-center space-x-2">
+          <span class="text-2xl font-black tracking-tight text-gray-950">AS <span class="text-rose-600">FASHIONS</span></span>
+        </a>
+
+        <!-- Desktop Navigation Categories -->
+        <nav class="hidden md:flex space-x-8 text-sm font-bold text-gray-700">
+          <button onclick="setCategory('all')" class="cat-btn hover:text-rose-600 transition text-rose-600" data-cat="all">All Mall</button>
+          <button onclick="setCategory('men')" class="cat-btn hover:text-rose-600 transition" data-cat="men">Men's Wear</button>
+          <button onclick="setCategory('women')" class="cat-btn hover:text-rose-600 transition" data-cat="women">Women's Collection</button>
+          <button onclick="setCategory('kids')" class="cat-btn hover:text-rose-600 transition" data-cat="kids">Kids' Zone</button>
+          <button onclick="setCategory('footwear')" class="cat-btn hover:text-rose-600 transition" data-cat="footwear">Footwear Mall 👟</button>
+        </nav>
+
+        <!-- Right Side: Search & Cart Button -->
+        <div class="flex items-center space-x-4">
+          <div class="relative hidden sm:block">
+            <input type="text" id="searchInput" oninput="handleSearch()" placeholder="Search shirts, kurtis, shoes..." class="w-56 pl-9 pr-4 py-1.5 text-xs bg-gray-100 rounded-full border border-transparent focus:border-rose-500 focus:bg-white focus:outline-none transition">
+            <i class="fa fa-search absolute left-3 top-2.5 text-gray-400 text-xs"></i>
+          </div>
+
+          <!-- Cart Trigger -->
+          <button onclick="toggleCartDrawer()" class="relative p-2 text-gray-800 hover:text-rose-600 transition">
+            <i class="fa fa-shopping-bag text-xl"></i>
+            <span id="navCartCount" class="absolute -top-1 -right-1 bg-rose-600 text-white font-bold text-[10px] rounded-full h-5 w-5 flex items-center justify-center">0</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Mobile Scrollable Category Bar -->
+    <div class="md:hidden border-t border-gray-100 bg-white px-4 py-2 flex space-x-4 overflow-x-auto no-scrollbar text-xs font-bold text-gray-600">
+      <button onclick="setCategory('all')" class="whitespace-nowrap active-cat text-rose-600" data-cat="all">All</button>
+      <button onclick="setCategory('men')" class="whitespace-nowrap" data-cat="men">Men</button>
+      <button onclick="setCategory('women')" class="whitespace-nowrap" data-cat="women">Women</button>
+      <button onclick="setCategory('kids')" class="whitespace-nowrap" data-cat="kids">Kids</button>
+      <button onclick="setCategory('footwear')" class="whitespace-nowrap" data-cat="footwear">Footwear 👟</button>
+    </div>
+  </header>
+
+  <!-- HERO BANNER -->
+  <section class="relative bg-gradient-to-r from-gray-900 via-gray-800 to-black text-white py-14 px-4 text-center">
+    <div class="max-w-4xl mx-auto space-y-4">
+      <span class="inline-block bg-rose-600 text-[10px] sm:text-xs uppercase px-3 py-1 rounded-full font-bold tracking-widest">Premium Quality • Direct Factory Rates</span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight leading-tight">India's All Variety Fashion Mall</h1>
+      <p class="text-gray-300 text-xs sm:text-sm max-w-2xl mx-auto">Explore massive varieties in Men's, Women's, Kids' fashion and Footwear with express shipping across India.</p>
+    </div>
+  </section>
+
+  <!-- FILTER & STATS BAR -->
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-4">
+    <div class="flex flex-col sm:flex-row items-center justify-between gap-4 border-b border-gray-200 pb-4">
+      <div>
+        <h2 id="sectionTitle" class="text-xl font-black text-gray-900">All Collections</h2>
+        <p id="itemCountText" class="text-xs text-gray-500">Showing all items</p>
+      </div>
+
+      <!-- Price Sort -->
+      <div class="flex items-center space-x-3 w-full sm:w-auto justify-end">
+        <label for="sortSelect" class="text-xs font-semibold text-gray-600">Sort by:</label>
+        <select id="sortSelect" onchange="handleSort()" class="text-xs border border-gray-300 rounded-lg px-3 py-1.5 bg-white focus:outline-none focus:border-rose-500">
+          <option value="featured">Featured</option>
+          <option value="low-high">Price: Low to High</option>
+          <option value="high-low">Price: High to Low</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCTS GRID -->
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 pb-24">
+    <div id="productGrid" class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
+      <!-- Dynamic Products injected via JS -->
+    </div>
+  </main>
+
+  <!-- CART SLIDE-OVER DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 bg-black bg-opacity-60 hidden transition-opacity flex justify-end">
+    <div class="bg-white w-full max-w-md h-full flex flex-col justify-between p-6 shadow-2xl overflow-y-auto">
+      
+      <!-- Drawer Header -->
+      <div>
+        <div class="flex items-center justify-between border-b pb-4">
+          <div class="flex items-center space-x-2">
+            <i class="fa fa-shopping-bag text-rose-600"></i>
+            <h2 class="text-lg font-black text-gray-900">Your Shopping Bag (<span id="cartDrawerCount">0</span>)</h2>
+          </div>
+          <button onclick="toggleCartDrawer()" class="text-gray-400 hover:text-gray-900 text-2xl font-bold">&times;</button>
+        </div>
+
+        <!-- Cart Items List -->
+        <div id="cartItemsList" class="divide-y divide-gray-100 my-4 max-h-[60vh] overflow-y-auto pr-1">
+          <!-- Cart items render here -->
+        </div>
+      </div>
+
+      <!-- Drawer Footer / Bill -->
+      <div class="border-t border-gray-200 pt-4 space-y-3">
+        <div class="space-y-1.5 text-xs text-gray-600">
+          <div class="flex justify-between">
+            <span>Subtotal</span>
+            <span id="cartSubtotal" class="font-bold text-gray-900">₹0</span>
+          </div>
+          <div class="flex justify-between text-green-600 font-semibold">
+            <span>Delivery Charges</span>
+            <span>FREE</span>
+          </div>
+          <div class="flex justify-between text-base font-black text-gray-950 pt-2 border-t">
+            <span>Total Payable</span>
+            <span id="cartFinalTotal" class="text-rose-600">₹0</span>
+          </div>
+        </div>
+
+        <button onclick="openCheckoutModal()" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 rounded-xl shadow-lg transition">
+          Proceed to Order
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 bg-black bg-opacity-70 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-lg rounded-2xl p-6 shadow-2xl max-h-[90vh] overflow-y-auto space-y-4">
+      <div class="flex justify-between items-center border-b pb-3">
+        <h3 class="text-lg font-black text-gray-900">Customer Delivery Details</h3>
+        <button onclick="closeCheckoutModal()" class="text-gray-400 hover:text-gray-900 text-2xl font-bold">&times;</button>
+      </div>
+
+      <form id="orderForm" onsubmit="submitCustomerOrder(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Full Name *</label>
+          <input type="text" id="custName" required placeholder="e.g. Ramesh Varma" class="w-full p-2.5 border rounded-lg focus:border-rose-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Phone / WhatsApp Number *</label>
+          <input type="tel" id="custPhone" required placeholder="10-digit mobile number" class="w-full p-2.5 border rounded-lg focus:border-rose-500 focus:outline-none">
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Complete Delivery Address *</label>
+          <textarea id="custAddress" required rows="2" placeholder="House No, Street, Landmark, City, Pincode" class="w-full p-2.5 border rounded-lg focus:border-rose-500 focus:outline-none"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-gray-700 mb-1">Payment Method</label>
+          <div class="grid grid-cols-2 gap-2">
+            <label class="border p-2.5 rounded-lg flex items-center space-x-2 cursor-pointer has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
+              <input type="radio" name="paymentMethod" value="COD" checked class="accent-rose-600">
+              <span class="font-bold text-gray-800">Cash on Delivery (COD)</span>
+            </label>
+            <label class="border p-2.5 rounded-lg flex items-center space-x-2 cursor-pointer has-[:checked]:border-rose-600 has-[:checked]:bg-rose-50">
+              <input type="radio" name="paymentMethod" value="Prepaid" class="accent-rose-600">
+              <span class="font-bold text-gray-800">UPI / Online Pay</span>
+            </label>
+          </div>
+        </div>
+
+        <div class="bg-gray-50 p-3 rounded-lg border text-[11px] text-gray-600 space-y-1">
+          <div class="flex justify-between font-bold text-gray-900 text-xs">
+            <span>Order Total:</span>
+            <span id="modalOrderTotal" class="text-rose-600">₹0</span>
+          </div>
+          <p>📦 Order will be verified and dispatched immediately.</p>
+        </div>
+
+        <button type="submit" class="w-full bg-gray-950 hover:bg-rose-600 text-white font-bold py-3 rounded-xl transition text-sm">
+          Confirm & Place Order
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- STOREFRONT JAVASCRIPT LOGIC -->
+  <script>
+    // Initial Catalog Data
+    const products = [
+      { id: "M1", name: "Men's Luxury Oxford Cotton Shirt", category: "men", price: 899, mrp: 1499, tag: "Best Seller", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"] },
+      { id: "M2", name: "Men's Stretchable Slim Fit Jeans", category: "men", price: 999, mrp: 1799, tag: "Trending", image: "https://images.unsplash.com/photo-1542272604-780c96856484?w=600&auto=format&fit=crop&q=80", sizes: ["30", "32", "34", "36"] },
+      { id: "W1", name: "Women's Pure Chanderi Silk Saree", category: "women", price: 1499, mrp: 2999, tag: "Festive Special", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80", sizes: ["Free Size"] },
+      { id: "W2", name: "Women's Designer Anarkali Kurti Set", category: "women", price: 1199, mrp: 2199, tag: "Popular", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80", sizes: ["S", "M", "L", "XL"] },
+      { id: "K1", name: "Kids' Royal Sherwani Suit (Boys)", category: "kids", price: 849, mrp: 1499, tag: "Party Wear", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=600&auto=format&fit=crop&q=80", sizes: ["2-3Y", "4-5Y", "6-7Y"] },
+      { id: "K2", name: "Kids' Layered Party Gown (Girls)", category: "kids", price: 799, mrp: 1399, tag: "Trending", image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop&q=80", sizes: ["3-4Y", "5-6Y", "7-8Y"] },
+      { id: "F1", name: "Air Cushion Lightweight Sneakers", category: "footwear", price: 1299, mrp: 2499, tag: "Hot Seller", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=600&auto=format&fit=crop&q=80", sizes: ["7", "8", "9", "10"] },
+      { id: "F2", name: "Women's Comfort Block Heel Sandals", category: "footwear", price: 799, mrp: 1499, tag: "Top Rated", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=600&auto=format&fit=crop&q=80", sizes: ["5", "6", "7", "8"] }
+    ];
+
+    let currentCategory = 'all';
+    let currentSearch = '';
+    let currentSort = 'featured';
+    let cart = JSON.parse(localStorage.getItem('as_cart') || '[]');
+
+    function renderStore() {
+      let filtered = products.filter(item => {
+        const matchesCat = currentCategory === 'all' || item.category === currentCategory;
+        const matchesSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase());
+        return matchesCat && matchesSearch;
+      });
+
+      if (currentSort === 'low-high') filtered.sort((a, b) => a.price - b.price);
+      if (currentSort === 'high-low') filtered.sort((a, b) => b.price - a.price);
+
+      const grid = document.getElementById('productGrid');
+      const countText = document.getElementById('itemCountText');
+      countText.innerText = `Showing ${filtered.length} products`;
+
+      grid.innerHTML = '';
+      if (filtered.length === 0) {
+        grid.innerHTML = `<div class="col-span-full text-center py-16 text-gray-400 font-semibold">No items match your search.</div>`;
+        return;
+      }
+
+      filtered.forEach(p => {
+        grid.innerHTML += `
+          <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition flex flex-col justify-between">
+            <div>
+              <div class="relative">
+                <img src="${p.image}" alt="${p.name}" class="w-full h-52 sm:h-64 object-cover object-top">
+                <span class="absolute top-2.5 left-2.5 bg-rose-600 text-white text-[10px] font-extrabold uppercase px-2 py-0.5 rounded-md shadow-sm">${p.tag}</span>
+              </div>
+              <div class="p-3.5 space-y-2">
+                <h3 class="text-xs sm:text-sm font-bold text-gray-800 line-clamp-1">${p.name}</h3>
+                <div class="flex items-baseline space-x-2">
+                  <span class="text-sm sm:text-base font-black text-gray-950">₹${p.price}</span>
+                  <span class="text-xs text-gray-400 line-through">₹${p.mrp}</span>
+                  <span class="text-[10px] font-bold text-green-600">${Math.round(((p.mrp - p.price)/p.mrp)*100)}% OFF</span>
+                </div>
+                
+                <!-- Sizes Badges -->
+                <div class="flex flex-wrap gap-1 pt-1">
+                  ${p.sizes.map(s => `<span class="text-[10px] border border-gray-200 px-1.5 py-0.5 rounded text-gray-600 bg-gray-50">${s}</span>`).join('')}
+                </div>
+              </div>
+            </div>
+
+            <div class="p-3.5 pt-0">
+              <button onclick="addToCart('${p.id}')" class="w-full bg-gray-900 hover:bg-rose-600 text-white text-xs font-bold py-2.5 rounded-xl transition flex items-center justify-center space-x-2">
+                <i class="fa fa-plus text-[10px]"></i>
+                <span>Add to Bag</span>
+              </button>
+            </div>
+          </div>
+        `;
+      });
+      updateCartBadge();
+    }
+
+    function setCategory(cat) {
+      currentCategory = cat;
+      const titles = { all: "All Collections", men: "Men's Fashion", women: "Women's Collection", kids: "Kids' Section", footwear: "Footwear Mall" };
+      document.getElementById('sectionTitle').innerText = titles[cat];
+      
+      document.querySelectorAll('.cat-btn, .mobile-cat-btn').forEach(btn => {
+        if(btn.dataset.cat === cat) {
+          btn.classList.add('text-rose-600');
+        } else {
+          btn.classList.remove('text-rose-600');
+        }
+      });
+      renderStore();
+    }
+
+    function handleSearch() {
+      currentSearch = document.getElementById('searchInput').value;
+      renderStore();
+    }
+
+    function handleSort() {
+      currentSort = document.getElementById('sortSelect').value;
+      renderStore();
+    }
+
+    function addToCart(id) {
+      const product = products.find(p => p.id === id);
+      const existing = cart.find(item => item.id === id);
+      if (existing) {
+        existing.qty += 1;
+      } else {
+        cart.push({ ...product, qty: 1, selectedSize: product.sizes[0] });
+      }
+      saveAndRefreshCart();
+      toggleCartDrawer(true);
+    }
+
+    function saveAndRefreshCart() {
+      localStorage.setItem('as_cart', JSON.stringify(cart));
+      updateCartBadge();
+      renderCartDrawer();
+    }
+
+    function updateCartBadge() {
+      const totalCount = cart.reduce((acc, i) => acc + i.qty, 0);
+      document.getElementById('navCartCount').innerText = totalCount;
+      document.getElementById('cartDrawerCount').innerText = totalCount;
+    }
+
+    function renderCartDrawer() {
+      const list = document.getElementById('cartItemsList');
+      const subtotalEl = document.getElementById('cartSubtotal');
+      const totalEl = document.getElementById('cartFinalTotal');
+      
+      const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      subtotalEl.innerText = `₹${total}`;
+      totalEl.innerText = `₹${total}`;
+
+      list.innerHTML = '';
+      if (cart.length === 0) {
+        list.innerHTML = `<div class="text-center py-12 text-gray-400 font-medium text-xs">Your shopping bag is empty.</div>`;
+        return;
+      }
+
+      cart.forEach(item => {
+        list.innerHTML += `
+          <div class="py-3 flex items-center justify-between gap-3">
+            <img src="${item.image}" class="w-14 h-14 object-cover rounded-lg border">
+            <div class="flex-1">
+              <h4 class="text-xs font-bold text-gray-800 line-clamp-1">${item.name}</h4>
+              <p class="text-[11px] text-gray-500">₹${item.price} • Size: ${item.selectedSize}</p>
+              <div class="flex items-center space-x-2 mt-1">
+                <button onclick="changeQty('${item.id}', -1)" class="w-5 h-5 bg-gray-100 rounded text-xs font-bold flex items-center justify-center">-</button>
+                <span class="text-xs font-bold">${item.qty}</span>
+                <button onclick="changeQty('${item.id}', 1)" class="w-5 h-5 bg-gray-100 rounded text-xs font-bold flex items-center justify-center">+</button>
+              </div>
+            </div>
+            <div class="text-right">
+              <span class="text-xs font-black text-gray-900">₹${item.price * item.qty}</span>
+              <button onclick="removeItem('${item.id}')" class="block text-[10px] text-red-500 font-semibold hover:underline mt-1">Remove</button>
+            </div>
+          </div>
+        `;
+      });
+    }
+
+    function changeQty(id, delta) {
+      const item = cart.find(i => i.id === id);
+      if (!item) return;
+      item.qty += delta;
+      if (item.qty <= 0) {
+        cart = cart.filter(i => i.id !== id);
+      }
+      saveAndRefreshCart();
+    }
+
+    function removeItem(id) {
+      cart = cart.filter(i => i.id !== id);
+      saveAndRefreshCart();
+    }
+
+    function toggleCartDrawer(forceOpen = false) {
+      const drawer = document.getElementById('cartDrawer');
+      if (forceOpen) {
+        drawer.classList.remove('hidden');
+      } else {
+        drawer.classList.toggle('hidden');
+      }
+      renderCartDrawer();
+    }
+
+    function openCheckoutModal() {
+      if(cart.length === 0) {
+        alert("Your bag is empty!");
+        return;
+      }
+      toggleCartDrawer();
+      const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+      document.getElementById('modalOrderTotal').innerText = `₹${total}`;
+      document.getElementById('checkoutModal').classList.remove('hidden');
+    }
+
+    function closeCheckoutModal() {
+      document.getElementById('checkoutModal').classList.add('hidden');
+    }
+
+    function submitCustomerOrder(e) {
+      e.preventDefault();
+      const name = document.getElementById('custName').value;
+      const phone = document.getElementById('custPhone').value;
+      const address = document.getElementById('custAddress').value;
+      const payment = document.querySelector('input[name="paymentMethod"]:checked').value;
+      const total = cart.reduce((acc, i) => acc + (i.price * i.qty), 0);
+
+      // Order Summary WhatsApp Generator
+      let msg = `🛍️ *NEW ORDER - AS FASHIONS*%0A`;
+      msg += `👤 *Customer:* ${name}%0A`;
+      msg += `📞 *Phone:* ${phone}%0A`;
+      msg += `📍 *Address:* ${address}%0A`;
+      msg += `💳 *Payment:* ${payment}%0A`;
+      msg += `----------------------------%0A`;
+      msg += `*Items Ordered:*%0A`;
+      cart.forEach(i => {
+        msg += `• ${i.name} (Size: ${i.selectedSize}, Qty: ${i.qty}) - ₹${i.price * i.qty}%0A`;
+      });
+      msg += `----------------------------%0A`;
+      msg += `💰 *Grand Total:* ₹${total}`;
+
+      // Clear cart
+      cart = [];
+      saveAndRefreshCart();
+      closeCheckoutModal();
+
+      // Open WhatsApp with order details (Replace with your WhatsApp Number)
+      const businessPhone = "919999999999";
+      window.open(`https://wa.me/${businessPhone}?text=${msg}`, '_blank');
+    }
+
+    // Initial Load
+    renderStore();
+  </script>
+</body>
+</html>
