@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "AS FASHIONS | Luxury Fashion & Home Living Mall",
-  description: "Next.js Powered Multi-Category Indian Fashion & Home Living Store",
+  description: "The Complete Indian Family Mall Powered by Next.js",
 };
 
 export default function RootLayout({
