@@ -10,14 +10,11 @@ import {
   X,
   Star,
   Flame,
-  Clock,
-  Sparkles,
-  ChevronRight,
   ShieldCheck,
   RotateCcw,
   Truck,
   Zap,
-  Tag,
+  Check,
 } from "lucide-react";
 
 interface Product {
@@ -34,6 +31,7 @@ interface Product {
   rating: number;
   reviews: number;
   sizes: string[];
+  description: string;
 }
 
 interface CartItem extends Product {
@@ -42,7 +40,6 @@ interface CartItem extends Product {
 }
 
 const PRODUCTS: Product[] = [
-  // WOMEN FASHION
   {
     id: "W-101",
     brand: "BIBA",
@@ -57,6 +54,7 @@ const PRODUCTS: Product[] = [
     rating: 5.0,
     reviews: 310,
     sizes: ["Free Size"],
+    description: "Exquisite Banarasi Silk Saree featuring intricate zari weaving and traditional rich pallu. Perfect for weddings and festive celebrations.",
   },
   {
     id: "W-102",
@@ -72,39 +70,8 @@ const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 190,
     sizes: ["S", "M", "L"],
+    description: "Chic floral printed midi dress with a flattering flared silhouette, lightweight breathable fabric, and comfortable waist styling.",
   },
-  {
-    id: "W-103",
-    brand: "VERO MODA",
-    name: "Handcrafted Chikankari Anarkali Kurti",
-    category: "women",
-    subCategory: "kurtis",
-    price: 1199,
-    mrp: 2299,
-    badge: "BESTSELLER",
-    image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=600&auto=format&fit=crop&q=80",
-    rating: 4.9,
-    reviews: 145,
-    sizes: ["M", "L", "XL"],
-  },
-  {
-    id: "W-104",
-    brand: "MANGO",
-    name: "Women High-Rise Stretch Denim Jeans",
-    category: "women",
-    subCategory: "western",
-    price: 1349,
-    mrp: 2199,
-    badge: "40% OFF",
-    image: "https://images.unsplash.com/photo-1541099649105-f69ad21f3246?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1542272604-780c96856484?w=600&auto=format&fit=crop&q=80",
-    rating: 4.7,
-    reviews: 94,
-    sizes: ["28", "30", "32"],
-  },
-
-  // MEN FASHION
   {
     id: "M-201",
     brand: "JACK & JONES",
@@ -119,21 +86,7 @@ const PRODUCTS: Product[] = [
     rating: 4.7,
     reviews: 140,
     sizes: ["M", "L", "XL"],
-  },
-  {
-    id: "M-202",
-    brand: "ROADSTER",
-    name: "Men's Crewneck Cotton Sweatshirt",
-    category: "men",
-    subCategory: "formal-shirts",
-    price: 999,
-    mrp: 1599,
-    badge: "HOT DEAL",
-    image: "https://images.unsplash.com/photo-1556905055-8f358a7a47b2?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=600&auto=format&fit=crop&q=80",
-    rating: 4.9,
-    reviews: 215,
-    sizes: ["M", "L", "XL"],
+    description: "Premium cotton tailored-fit shirt designed for high-end comfort and sharp formal/casual styling.",
   },
   {
     id: "M-203",
@@ -149,24 +102,8 @@ const PRODUCTS: Product[] = [
     rating: 4.8,
     reviews: 98,
     sizes: ["30", "32", "34", "36"],
+    description: "Rugged yet premium selvedge denim engineered with stretch comfort and durable indigo wash.",
   },
-  {
-    id: "M-204",
-    brand: "MANYAVAR",
-    name: "Royal Jacquard Silk Kurta Set",
-    category: "men",
-    subCategory: "men-ethnic",
-    price: 2199,
-    mrp: 3999,
-    badge: "FESTIVE SPECIAL",
-    image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=600&auto=format&fit=crop&q=80",
-    rating: 4.9,
-    reviews: 87,
-    sizes: ["M", "L", "XL"],
-  },
-
-  // KIDS FASHION
   {
     id: "KD-301",
     brand: "MAX",
@@ -181,38 +118,7 @@ const PRODUCTS: Product[] = [
     rating: 4.9,
     reviews: 78,
     sizes: ["3-4Y", "5-6Y", "7-8Y"],
-  },
-  {
-    id: "KD-302",
-    brand: "MINIKLUB",
-    name: "Girls' Layered Sparkle Princess Frock",
-    category: "kids",
-    subCategory: "girls-frocks",
-    price: 799,
-    mrp: 1499,
-    badge: "BESTSELLER",
-    image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=600&auto=format&fit=crop&q=80",
-    hoverImage: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=600&auto=format&fit=crop&q=80",
-    rating: 4.9,
-    reviews: 160,
-    sizes: ["2-3Y", "4-5Y", "6-7Y"],
-  },
-];
-
-const HERO_BANNERS = [
-  {
-    tag: "GRAND FESTIVE SALE",
-    title: "AJIO & MYNTRA LUXE EDIT",
-    desc: "Handcrafted Sarees, Designer Streetwear & Festive Kids Ensembles.",
-    bg: "from-neutral-950 via-neutral-900 to-rose-950",
-    img: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=800&auto=format&fit=crop&q=80",
-  },
-  {
-    tag: "ROYAL ETHNIC STUDIO",
-    title: "PURE ZARI & SILK WEAVES",
-    desc: "Direct artisan collections at competitive wholesale margins.",
-    bg: "from-neutral-950 via-neutral-900 to-amber-950",
-    img: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80",
+    description: "Luxurious velvet ethnic sherwani set designed for kids' festive occasions and family weddings.",
   },
 ];
 
@@ -222,14 +128,17 @@ export default function HomePage() {
   const [search, setSearch] = useState<string>("");
   const [cart, setCart] = useState<CartItem[]>([]);
   const [wishlist, setWishlist] = useState<string[]>([]);
+  
+  // Modals & Drawers
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
   const [isFilterDrawerOpen, setIsFilterDrawerOpen] = useState(false);
   const [isSortDrawerOpen, setIsSortDrawerOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedSize, setSelectedSize] = useState<string>("");
+
   const [sortOrder, setSortOrder] = useState("popular");
   const [activeSizeFilter, setActiveSizeFilter] = useState<string | null>(null);
-
-  const [currentSlide, setCurrentSlide] = useState(0);
   const [couponCode, setCouponCode] = useState("");
   const [discount, setDiscount] = useState(0);
   const [couponMsg, setCouponMsg] = useState<{ text: string; error: boolean } | null>(null);
@@ -243,11 +152,6 @@ export default function HomePage() {
     const savedWish = localStorage.getItem("asfashions_wishlist");
     if (savedCart) setCart(JSON.parse(savedCart));
     if (savedWish) setWishlist(JSON.parse(savedWish));
-
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % HERO_BANNERS.length);
-    }, 5000);
-    return () => clearInterval(interval);
   }, []);
 
   const saveCart = (newCart: CartItem[]) => {
@@ -270,6 +174,7 @@ export default function HomePage() {
       updated = [...cart, { ...product, qty: 1, selectedSize: size }];
     }
     saveCart(updated);
+    setSelectedProduct(null);
     setIsCartOpen(true);
   };
 
@@ -340,7 +245,7 @@ export default function HomePage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#fafafb] text-neutral-900 antialiased pb-20 lg:pb-12 font-sans selection:bg-[#ff3f6c] selection:text-white">
+    <div className="min-h-screen bg-[#fafafb] text-neutral-900 antialiased pb-20 lg:pb-12">
       
       {/* 1. TOP TICKER */}
       <div className="bg-black text-white text-[10px] sm:text-xs py-2 px-4 text-center font-bold tracking-widest uppercase flex justify-between items-center border-b border-neutral-800">
@@ -365,7 +270,7 @@ export default function HomePage() {
               AS
             </div>
             <div className="flex flex-col">
-              <span className="text-base sm:text-xl font-black tracking-widest leading-none font-['Syne']">
+              <span className="text-base sm:text-xl font-black tracking-widest leading-none">
                 AS <span className="text-[#ff3f6c]">FASHIONS</span>
               </span>
               <span className="text-[7px] tracking-[0.3em] uppercase text-neutral-400 font-extrabold mt-0.5">
@@ -374,7 +279,6 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* DESKTOP NAV TABS */}
           <nav className="hidden lg:flex items-center space-x-8 text-xs font-black uppercase tracking-wider text-neutral-800">
             {[
               { id: "all", label: "All Mall" },
@@ -399,7 +303,6 @@ export default function HomePage() {
             ))}
           </nav>
 
-          {/* SEARCH BAR */}
           <div className="relative flex-1 max-w-xs sm:max-w-sm">
             <input
               type="text"
@@ -411,7 +314,6 @@ export default function HomePage() {
             <Search className="absolute left-3 top-2.5 h-3.5 w-3.5 text-neutral-400" />
           </div>
 
-          {/* WISHLIST & CART ICONS */}
           <div className="flex items-center space-x-3 sm:space-x-4">
             <button
               onClick={() => setSelectedDept("all")}
@@ -435,203 +337,8 @@ export default function HomePage() {
         </div>
       </header>
 
-      {/* 3. STORIES HORIZONTAL CAROUSEL */}
-      <section className="bg-white border-b border-neutral-200/80 py-3 overflow-x-auto no-scrollbar">
-        <div className="max-w-7xl mx-auto px-4 flex items-center space-x-4 sm:space-x-6 min-w-max">
-          <div
-            onClick={() => {
-              setSelectedDept("all");
-              setSelectedSub("all");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border-2 border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1441986300917-64674bd600d8?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-bold text-neutral-800">All Mall</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("men");
-              setSelectedSub("formal-shirts");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Men Shirts</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("men");
-              setSelectedSub("denim");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1542272604-780c96856484?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Men Jeans</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("women");
-              setSelectedSub("sarees");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Silk Sarees</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("women");
-              setSelectedSub("western");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Dresses</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("kids");
-              setSelectedSub("kids-ethnic");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Kids Ethnic</span>
-          </div>
-
-          <div
-            onClick={() => {
-              setSelectedDept("kids");
-              setSelectedSub("girls-frocks");
-            }}
-            className="flex flex-col items-center space-y-1 cursor-pointer group"
-          >
-            <div className="w-14 h-14 rounded-full p-0.5 border border-neutral-200 group-hover:border-[#ff3f6c] group-hover:scale-105 transition">
-              <img
-                src="https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=200&auto=format&fit=crop&q=80"
-                className="w-full h-full object-cover rounded-full"
-              />
-            </div>
-            <span className="text-[10px] font-semibold text-neutral-700">Girls Frocks</span>
-          </div>
-        </div>
-      </section>
-
-      {/* 4. LUXURY BENTO HERO EDITORIAL */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-5">
-        <div className="relative w-full h-52 sm:h-80 rounded-3xl overflow-hidden shadow-sm bg-black">
-          {HERO_BANNERS.map((slide, idx) => (
-            <div
-              key={slide.tag}
-              className={`absolute inset-0 transition-opacity duration-700 flex items-center justify-between p-6 sm:p-12 bg-gradient-to-r ${slide.bg} text-white ${
-                idx === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-              }`}
-            >
-              <div className="space-y-2.5 max-w-sm sm:max-w-md">
-                <span className="bg-[#ff3f6c] text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-0.5 rounded-full">
-                  {slide.tag}
-                </span>
-                <h2 className="text-xl sm:text-3xl font-black leading-tight font-['Syne']">
-                  {slide.title}
-                </h2>
-                <p className="text-[11px] sm:text-xs text-neutral-300">
-                  {slide.desc}
-                </p>
-                <button
-                  onClick={() => {
-                    document.getElementById("catalogSection")?.scrollIntoView({ behavior: "smooth" });
-                  }}
-                  className="bg-white text-black font-extrabold text-[10px] sm:text-xs uppercase px-5 py-2.5 rounded-full hover:bg-[#ff3f6c] hover:text-white transition shadow-sm"
-                >
-                  Shop The Edit →
-                </button>
-              </div>
-              <img
-                src={slide.img}
-                className="hidden sm:block h-full w-1/3 object-cover rounded-2xl opacity-85 shadow-lg"
-              />
-            </div>
-          ))}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex space-x-1.5 z-20">
-            {HERO_BANNERS.map((_, idx) => (
-              <button
-                key={idx}
-                onClick={() => setCurrentSlide(idx)}
-                className={`h-1.5 rounded-full transition-all ${
-                  idx === currentSlide ? "w-6 bg-[#ff3f6c]" : "w-2 bg-white/50"
-                }`}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* 5. FLASH SALE & TRUST BADGES GRID */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-8 py-3">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3.5">
-          <div className="bg-gradient-to-r from-neutral-900 to-black text-white p-4 rounded-2xl flex items-center justify-between shadow-xs">
-            <div className="space-y-1">
-              <span className="text-[9px] font-black text-rose-400 uppercase tracking-widest flex items-center gap-1"><Flame className="h-3 w-3" /> Lightning Deals</span>
-              <h4 className="text-xs font-black">Flat 50-70% Off</h4>
-            </div>
-            <span className="text-xs font-bold text-neutral-300 underline cursor-pointer">Explore</span>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 flex items-center space-x-3 shadow-xs">
-            <ShieldCheck className="h-7 w-7 text-emerald-600" />
-            <div>
-              <h4 className="text-xs font-black text-neutral-900">100% Original Brand Assured</h4>
-              <p className="text-[10px] text-neutral-500">Sourced from top manufacturing houses</p>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-2xl border border-neutral-200/80 flex items-center space-x-3 shadow-xs">
-            <RotateCcw className="h-7 w-7 text-blue-600" />
-            <div>
-              <h4 className="text-xs font-black text-neutral-900">15-Day Instant Returns</h4>
-              <p className="text-[10px] text-neutral-500">Hassle-free doorstep pickup & exchange</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 6. MAIN CATALOG GRID WITH MYNTRA CARDS */}
-      <main id="catalogSection" className="max-w-7xl mx-auto px-4 sm:px-8 py-6">
+      {/* 3. CATALOG GRID */}
+      <main className="max-w-7xl mx-auto px-4 sm:px-8 py-6">
         <div className="flex items-center justify-between mb-4 border-b pb-3">
           <div>
             <h2 className="text-base sm:text-xl font-black uppercase tracking-tight text-neutral-900">
@@ -640,20 +347,6 @@ export default function HomePage() {
             <p className="text-[11px] text-neutral-500">
               Showing {filteredProducts.length} curated apparel styles
             </p>
-          </div>
-
-          <div className="hidden sm:flex items-center space-x-2">
-            <label className="text-xs font-bold text-neutral-500 uppercase">Sort By:</label>
-            <select
-              value={sortOrder}
-              onChange={(e) => setSortOrder(e.target.value)}
-              className="border border-neutral-200 rounded-xl px-3 py-1.5 text-xs font-bold bg-white focus:outline-none"
-            >
-              <option value="popular">Popularity &amp; Ratings</option>
-              <option value="low-high">Price: Low to High</option>
-              <option value="high-low">Price: High to Low</option>
-              <option value="discount">Biggest Discount</option>
-            </select>
           </div>
         </div>
 
@@ -665,9 +358,9 @@ export default function HomePage() {
             return (
               <div
                 key={p.id}
-                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200/80 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+                className="group bg-white rounded-2xl overflow-hidden border border-neutral-200/80 shadow-2xs hover:shadow-xl transition-all duration-300 flex flex-col justify-between cursor-pointer"
               >
-                <div>
+                <div onClick={() => { setSelectedProduct(p); setSelectedSize(p.sizes[0]); }}>
                   <div className="relative aspect-[3/4] overflow-hidden bg-neutral-100">
                     <img
                       src={p.image}
@@ -679,7 +372,7 @@ export default function HomePage() {
                       </span>
                     )}
                     <button
-                      onClick={() => toggleWishlist(p.id)}
+                      onClick={(e) => { e.stopPropagation(); toggleWishlist(p.id); }}
                       className="absolute top-2 right-2 w-7 h-7 rounded-full bg-white/90 shadow-sm flex items-center justify-center hover:scale-110 transition"
                     >
                       <Heart
@@ -707,17 +400,6 @@ export default function HomePage() {
                         {discountPercent}% OFF
                       </span>
                     </div>
-
-                    <div className="flex flex-wrap gap-1 pt-1">
-                      {p.sizes.map((s) => (
-                        <span
-                          key={s}
-                          className="text-[8px] px-1.5 py-0.5 rounded border border-neutral-200 bg-neutral-50 text-neutral-600 font-bold"
-                        >
-                          {s}
-                        </span>
-                      ))}
-                    </div>
                   </div>
                 </div>
 
@@ -736,166 +418,71 @@ export default function HomePage() {
         </div>
       </main>
 
-      {/* 7. MOBILE FLOATING BOTTOM BAR */}
-      <div className="lg:hidden fixed bottom-0 left-0 right-0 z-40 bg-white border-t border-neutral-200 shadow-2xl flex items-center justify-around h-14">
-        <button
-          onClick={() => setIsSortDrawerOpen(true)}
-          className="flex-1 flex items-center justify-center space-x-2 text-xs font-extrabold text-neutral-800 border-r border-neutral-200 h-full"
-        >
-          <ArrowUpDown className="h-4 w-4 text-[#ff3f6c]" />
-          <span>Sort</span>
-        </button>
-        <button
-          onClick={() => setIsFilterDrawerOpen(true)}
-          className="flex-1 flex items-center justify-center space-x-2 text-xs font-extrabold text-neutral-800 h-full"
-        >
-          <SlidersHorizontal className="h-4 w-4 text-[#ff3f6c]" />
-          <span>Filter</span>
-        </button>
-      </div>
-
-      {/* 8. MOBILE SORT BOTTOM SHEET */}
-      {isSortDrawerOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex items-end">
-          <div className="bg-white w-full rounded-t-3xl p-6 space-y-3 shadow-2xl">
-            <div className="flex items-center justify-between border-b pb-3">
-              <h3 className="text-xs font-black uppercase text-neutral-900">Sort Products By</h3>
-              <button onClick={() => setIsSortDrawerOpen(false)}>
-                <X className="h-5 w-5 text-neutral-400" />
-              </button>
-            </div>
-            <div className="space-y-1 text-xs font-bold">
-              <button
-                onClick={() => {
-                  setSortOrder("popular");
-                  setIsSortDrawerOpen(false);
-                }}
-                className="w-full text-left p-3 rounded-xl hover:bg-neutral-100"
-              >
-                Popularity &amp; Ratings
-              </button>
-              <button
-                onClick={() => {
-                  setSortOrder("low-high");
-                  setIsSortDrawerOpen(false);
-                }}
-                className="w-full text-left p-3 rounded-xl hover:bg-neutral-100"
-              >
-                Price: Low to High
-              </button>
-              <button
-                onClick={() => {
-                  setSortOrder("high-low");
-                  setIsSortDrawerOpen(false);
-                }}
-                className="w-full text-left p-3 rounded-xl hover:bg-neutral-100"
-              >
-                Price: High to Low
-              </button>
-              <button
-                onClick={() => {
-                  setSortOrder("discount");
-                  setIsSortDrawerOpen(false);
-                }}
-                className="w-full text-left p-3 rounded-xl hover:bg-neutral-100"
-              >
-                Better Discount
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* 9. MOBILE FILTER DRAWER */}
-      {isFilterDrawerOpen && (
-        <div className="fixed inset-0 z-50 bg-black/60 flex justify-end">
-          <div className="bg-white w-full max-w-xs h-full flex flex-col justify-between p-6 shadow-2xl overflow-y-auto">
-            <div className="space-y-6">
-              <div className="flex items-center justify-between border-b pb-3">
-                <h3 className="text-xs font-black uppercase text-neutral-900">Filter By</h3>
-                <button onClick={() => setIsFilterDrawerOpen(false)}>
-                  <X className="h-5 w-5 text-neutral-400" />
-                </button>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase text-neutral-400">
-                  Select Department
-                </label>
-                <div className="grid grid-cols-2 gap-2">
-                  <button
-                    onClick={() => {
-                      setSelectedDept("all");
-                      setIsFilterDrawerOpen(false);
-                    }}
-                    className="p-2 rounded-xl border text-xs font-bold bg-black text-white"
-                  >
-                    All Mall
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedDept("men");
-                      setIsFilterDrawerOpen(false);
-                    }}
-                    className="p-2 rounded-xl border text-xs font-bold"
-                  >
-                    👔 Men
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedDept("women");
-                      setIsFilterDrawerOpen(false);
-                    }}
-                    className="p-2 rounded-xl border text-xs font-bold"
-                  >
-                    👗 Women
-                  </button>
-                  <button
-                    onClick={() => {
-                      setSelectedDept("kids");
-                      setIsFilterDrawerOpen(false);
-                    }}
-                    className="p-2 rounded-xl border text-xs font-bold"
-                  >
-                    🧒 Kids
-                  </button>
-                </div>
-              </div>
-
-              <div className="space-y-2">
-                <label className="text-[10px] font-black uppercase text-neutral-400">
-                  Filter By Size
-                </label>
-                <div className="flex flex-wrap gap-2">
-                  {["S", "M", "L", "XL", "30", "32", "34"].map((sz) => (
-                    <button
-                      key={sz}
-                      onClick={() => {
-                        setActiveSizeFilter(activeSizeFilter === sz ? null : sz);
-                        setIsFilterDrawerOpen(false);
-                      }}
-                      className={`w-9 h-9 rounded-xl border text-xs font-bold flex items-center justify-center ${
-                        activeSizeFilter === sz ? "bg-black text-white border-black" : "bg-white text-black"
-                      }`}
-                    >
-                      {sz}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
+      {/* 4. PRODUCT DETAIL MODAL (PDP QUICK VIEW) */}
+      {selectedProduct && (
+        <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
+          <div className="bg-white w-full max-w-2xl rounded-3xl overflow-hidden shadow-2xl relative flex flex-col sm:flex-row max-h-[90vh] overflow-y-auto">
             <button
-              onClick={() => setIsFilterDrawerOpen(false)}
-              className="w-full bg-black text-white py-3 rounded-xl font-bold text-xs uppercase"
+              onClick={() => setSelectedProduct(null)}
+              className="absolute top-3 right-3 z-10 p-2 rounded-full bg-white/80 shadow-md hover:bg-white"
             >
-              Apply Filter
+              <X className="h-5 w-5 text-neutral-700" />
             </button>
+            <div className="sm:w-1/2 bg-neutral-100 relative aspect-[3/4]">
+              <img
+                src={selectedProduct.image}
+                className="w-full h-full object-cover"
+              />
+            </div>
+            <div className="sm:w-1/2 p-6 flex flex-col justify-between space-y-4">
+              <div className="space-y-2">
+                <span className="text-[10px] font-black uppercase tracking-wider text-neutral-400">
+                  {selectedProduct.brand}
+                </span>
+                <h3 className="text-base font-black text-neutral-900">{selectedProduct.name}</h3>
+                <div className="flex items-baseline space-x-2">
+                  <span className="text-lg font-black text-black">₹{selectedProduct.price}</span>
+                  <span className="text-xs text-neutral-400 line-through">₹{selectedProduct.mrp}</span>
+                </div>
+                <p className="text-xs text-neutral-600 pt-2 border-t">
+                  {selectedProduct.description}
+                </p>
+
+                <div className="pt-2">
+                  <label className="text-[10px] font-black uppercase text-neutral-500 block mb-1">
+                    Select Size
+                  </label>
+                  <div className="flex flex-wrap gap-2">
+                    {selectedProduct.sizes.map((sz) => (
+                      <button
+                        key={sz}
+                        onClick={() => setSelectedSize(sz)}
+                        className={`px-3 py-1.5 rounded-xl border text-xs font-bold transition ${
+                          selectedSize === sz
+                            ? "border-black bg-black text-white"
+                            : "border-neutral-200 bg-white text-neutral-800"
+                        }`}
+                      >
+                        {sz}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <button
+                onClick={() => addToCart(selectedProduct, selectedSize || selectedProduct.sizes[0])}
+                className="w-full bg-[#ff3f6c] hover:bg-rose-700 text-white font-extrabold py-3.5 rounded-2xl text-xs uppercase tracking-wider transition shadow-md flex items-center justify-center space-x-2"
+              >
+                <ShoppingBag className="h-4 w-4" />
+                <span>Add to Shopping Bag</span>
+              </button>
+            </div>
           </div>
         </div>
       )}
 
-      {/* 10. SHOPPING BAG DRAWER */}
+      {/* 5. SHOPPING BAG DRAWER */}
       {isCartOpen && (
         <div className="fixed inset-0 z-50 bg-black/60 flex justify-end">
           <div className="bg-white w-full max-w-md h-full p-6 flex flex-col justify-between overflow-y-auto shadow-2xl">
@@ -1021,7 +608,7 @@ export default function HomePage() {
         </div>
       )}
 
-      {/* 11. CHECKOUT MODAL */}
+      {/* 6. CHECKOUT MODAL */}
       {isCheckoutOpen && (
         <div className="fixed inset-0 z-50 bg-black/70 flex items-center justify-center p-4">
           <div className="bg-white w-full max-w-md rounded-3xl p-6 shadow-2xl">
