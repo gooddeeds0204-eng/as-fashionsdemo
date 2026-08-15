@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AS FASHIONS | The Grand Indian Fashion & Footwear Mall</title>
+  <title>AS FASHIONS | The Grand Mega Mall</title>
   
   <!-- Tailwind CSS & FontAwesome -->
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- Fonts -->
+  <!-- Modern High-Fashion Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Syne:wght@700;800;900&display=swap" rel="stylesheet">
@@ -20,16 +20,16 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     .ad-slide { transition: opacity 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-    .product-card:hover .hover-img { opacity: 1; transform: scale(1.06); }
-    .glass-panel { background: rgba(255, 255, 255, 0.92); backdrop-filter: blur(16px); }
+    .product-card:hover .hover-img { opacity: 1; transform: scale(1.05); }
+    .glass-panel { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(16px); }
   </style>
 </head>
-<body class="text-neutral-900 antialiased selection:bg-rose-600 selection:text-white">
+<body class="text-neutral-900 antialiased selection:bg-rose-600 selection:text-white pb-16 lg:pb-0">
 
-  <!-- TOP PROMO STRIP -->
+  <!-- TOP RUNNING TICKER -->
   <div class="bg-black text-white text-[11px] uppercase tracking-widest py-2.5 px-4 text-center font-extrabold flex justify-center items-center gap-3">
     <span class="inline-block w-2 h-2 rounded-full bg-rose-500 animate-ping"></span>
-    <span>FESTIVE GRAND SALE: FLAT 40% OFF ALL INDIAN WEAR &amp; FOOTWEAR • CODE: <strong class="text-rose-400">ASF40</strong> • FREE DISPATCH ACROSS INDIA</span>
+    <span>GRAND FESTIVE SALE: FLAT 40% OFF STOREWIDE • CODE: <strong class="text-rose-400">ASF40</strong> • FREE EXPRESS DELIVERY ACROSS INDIA</span>
   </div>
 
   <!-- MAIN HEADER -->
@@ -52,20 +52,20 @@
           </div>
         </a>
 
-        <!-- MAIN MEGA CATEGORIES -->
+        <!-- MAIN MEGA NAV BUTTONS -->
         <nav class="hidden lg:flex items-center space-x-8 text-xs uppercase tracking-wider font-extrabold text-neutral-700">
-          <button onclick="setMainCategory('all')" class="main-nav-btn text-rose-600 hover:text-rose-600 transition py-2" data-main="all">All Departments</button>
+          <button onclick="setMainCategory('all')" class="main-nav-btn text-rose-600 hover:text-rose-600 transition py-2" data-main="all">All Mall</button>
           <button onclick="setMainCategory('men')" class="main-nav-btn hover:text-rose-600 transition py-2" data-main="men">👔 Men</button>
           <button onclick="setMainCategory('women')" class="main-nav-btn hover:text-rose-600 transition py-2" data-main="women">👗 Women</button>
           <button onclick="setMainCategory('kids')" class="main-nav-btn hover:text-rose-600 transition py-2" data-main="kids">🧒 Kids</button>
           <button onclick="setMainCategory('footwear')" class="main-nav-btn hover:text-rose-600 transition py-2" data-main="footwear">👟 Footwear Hub</button>
         </nav>
 
-        <!-- SEARCH, WISHLIST & CART -->
+        <!-- SEARCH, WISHLIST & BAG -->
         <div class="flex items-center space-x-3 sm:space-x-4">
-          <div class="relative hidden sm:block w-60">
-            <input type="text" id="globalSearch" oninput="handleSearch()" placeholder="Search Sarees, Shirts, Sneakers..." class="w-full pl-9 pr-4 py-2 text-xs bg-neutral-100 rounded-full border border-transparent focus:border-black focus:bg-white focus:outline-none transition">
-            <i class="fa fa-search absolute left-3 top-3 text-neutral-400 text-xs"></i>
+          <div class="relative hidden sm:block w-64">
+            <input type="text" id="globalSearch" oninput="handleSearch()" placeholder="Search 5,000+ Styles, Sarees, Shoes..." class="w-full pl-9 pr-4 py-2.5 text-xs bg-neutral-100 rounded-full border border-transparent focus:border-black focus:bg-white focus:outline-none transition">
+            <i class="fa fa-search absolute left-3 top-3.5 text-neutral-400 text-xs"></i>
           </div>
 
           <button onclick="toggleWishlistModal()" class="relative p-2 text-neutral-700 hover:text-rose-600 transition">
@@ -91,9 +91,9 @@
       <!-- Slide 1 -->
       <div class="ad-slide absolute inset-0 opacity-100 flex items-center justify-between px-6 sm:px-16 bg-gradient-to-r from-neutral-950 via-neutral-900 to-rose-950">
         <div class="max-w-xl space-y-3 z-10">
-          <span class="inline-block bg-rose-600 text-white text-[10px] font-black uppercase tracking-[0.25em] px-3.5 py-1 rounded-full">Grand Mall Launch</span>
+          <span class="inline-block bg-rose-600 text-white text-[10px] font-black uppercase tracking-[0.25em] px-3.5 py-1 rounded-full">Mega Mall Launch</span>
           <h1 class="brand-font text-3xl sm:text-5xl font-black leading-tight">All Variety Family Fashion Mall</h1>
-          <p class="text-neutral-300 text-xs sm:text-sm">Explore thousands of styles across Men's, Women's, Kids' Apparel and Premium Footwear under one roof.</p>
+          <p class="text-neutral-300 text-xs sm:text-sm">50+ specialized departments across Men's, Women's, Kids' Apparel and Footwear.</p>
           <button onclick="scrollToCatalog()" class="bg-white text-black hover:bg-rose-600 hover:text-white px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition shadow-2xl">
             Explore All Collections →
           </button>
@@ -106,9 +106,9 @@
         <div class="max-w-xl space-y-3 z-10">
           <span class="inline-block bg-amber-500 text-black text-[10px] font-black uppercase tracking-[0.25em] px-3.5 py-1 rounded-full">Royal Festive &amp; Wedding</span>
           <h1 class="brand-font text-3xl sm:text-5xl font-black leading-tight">Pure Zari Sarees &amp; Designer Kurtis</h1>
-          <p class="text-neutral-300 text-xs sm:text-sm">Authentic Kanjivaram, Banarasi Zari Silk, Georgette Anarkalis &amp; Lehengas at direct weaver rates.</p>
-          <button onclick="quickFilterDepartment('women', 'sarees')" class="bg-amber-400 text-black hover:bg-white px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition shadow-2xl">
-            Shop Women's Silk →
+          <p class="text-neutral-300 text-xs sm:text-sm">Authentic Kanjivaram, Banarasi Zari Silk, Georgette Anarkalis &amp; Lehengas.</p>
+          <button onclick="setMainCategory('women'); scrollToCatalog();" class="bg-amber-400 text-black hover:bg-white px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition shadow-2xl">
+            Shop Women's Ethnic →
           </button>
         </div>
         <img src="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=800&auto=format&fit=crop&q=80" class="hidden md:block w-1/3 h-full object-cover opacity-80 mix-blend-luminosity">
@@ -117,10 +117,10 @@
       <!-- Slide 3 -->
       <div class="ad-slide absolute inset-0 opacity-0 flex items-center justify-between px-6 sm:px-16 bg-gradient-to-r from-neutral-950 via-neutral-900 to-blue-950">
         <div class="max-w-xl space-y-3 z-10">
-          <span class="inline-block bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.25em] px-3.5 py-1 rounded-full">Footwear Universe 👟</span>
-          <h1 class="brand-font text-3xl sm:text-5xl font-black leading-tight">Athletic Sneakers &amp; Luxury Heels</h1>
-          <p class="text-neutral-300 text-xs sm:text-sm">Shock-absorbing air running shoes, formal brogues, and bridal heels engineered for comfort.</p>
-          <button onclick="quickFilterDepartment('footwear', 'sneakers')" class="bg-blue-500 text-white hover:bg-white hover:text-black px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition shadow-2xl">
+          <span class="inline-block bg-blue-600 text-white text-[10px] font-black uppercase tracking-[0.25em] px-3.5 py-1 rounded-full">Footwear Hub 👟</span>
+          <h1 class="brand-font text-3xl sm:text-5xl font-black leading-tight">Engineered Sneakers &amp; Luxury Heels</h1>
+          <p class="text-neutral-300 text-xs sm:text-sm">High shock-absorption runners, formal brogues, and bridal party sandals.</p>
+          <button onclick="setMainCategory('footwear'); scrollToCatalog();" class="bg-blue-500 text-white hover:bg-white hover:text-black px-6 py-3 rounded-xl font-extrabold text-xs uppercase tracking-wider transition shadow-2xl">
             Shop Footwear Hub →
           </button>
         </div>
@@ -129,7 +129,6 @@
 
     </div>
 
-    <!-- Dots -->
     <div class="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2 z-20">
       <button onclick="setHeroSlide(0)" class="hero-dot w-8 h-1.5 rounded-full bg-white transition"></button>
       <button onclick="setHeroSlide(1)" class="hero-dot w-2.5 h-1.5 rounded-full bg-neutral-600 transition"></button>
@@ -137,115 +136,150 @@
     </div>
   </section>
 
-  <!-- MULTI-LEVEL SUBCATEGORY MALL SECTION -->
+  <!-- MULTI-LEVEL COMPLETE SUBCATEGORY DIRECTORY (50+ VERITIES) -->
   <section class="max-w-7xl mx-auto px-4 sm:px-8 py-10">
     <div class="flex items-center justify-between mb-6">
       <div>
-        <span class="text-[10px] font-black uppercase tracking-[0.3em] text-rose-600">All Varieties</span>
-        <h2 class="text-xl sm:text-2xl font-black tracking-tight text-neutral-900">Explore by Specific Subcategories</h2>
+        <span class="text-[10px] font-black uppercase tracking-[0.3em] text-rose-600">All India Catalog</span>
+        <h2 class="text-xl sm:text-3xl font-black tracking-tight text-neutral-900">Explore Complete Department Varieties</h2>
       </div>
     </div>
 
-    <!-- Subcategories Tabs & Quick Grid -->
-    <div class="space-y-6">
+    <!-- Multi-Level Structured Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
       
-      <!-- 1. Men's Department & Subcategories -->
-      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="flex items-center space-x-3 w-48">
-          <div class="w-10 h-10 bg-neutral-900 text-white rounded-2xl flex items-center justify-center font-black">👔</div>
-          <div>
-            <h4 class="text-sm font-black text-neutral-900">Men's Fashion</h4>
-            <p class="text-[10px] text-neutral-500">All formal, casual &amp; ethnic</p>
+      <!-- 1. MEN'S COMPLETE DEPARTMENT -->
+      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3 border-b pb-3">
+            <div class="w-10 h-10 bg-neutral-900 text-white rounded-2xl flex items-center justify-center font-black">👔</div>
+            <div>
+              <h4 class="text-sm font-black text-neutral-900">Men's Apparel</h4>
+              <p class="text-[10px] text-neutral-500">Topwear, Bottoms &amp; Ethnic</p>
+            </div>
+          </div>
+          
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Topwear &amp; Shirts</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('men', 'formal-shirts')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Formal Shirts</button>
+              <button onclick="quickFilterDepartment('men', 'casual-shirts')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Casual Shirts</button>
+              <button onclick="quickFilterDepartment('men', 't-shirts')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Oversized Tees</button>
+              <button onclick="quickFilterDepartment('men', 'polos')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Polo Shirts</button>
+              <button onclick="quickFilterDepartment('men', 'blazers')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Blazers &amp; Suits</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Bottomwear &amp; Ethnic</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('men', 'trousers')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Formal Trousers</button>
+              <button onclick="quickFilterDepartment('men', 'chinos')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Slim Chinos</button>
+              <button onclick="quickFilterDepartment('men', 'denim')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Selvedge Jeans</button>
+              <button onclick="quickFilterDepartment('men', 'ethnic')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Kurta Pajama</button>
+              <button onclick="quickFilterDepartment('men', 'sherwani')" class="px-2.5 py-1 bg-neutral-50 hover:bg-neutral-900 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Sherwanis</button>
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="quickFilterDepartment('men', 'formal-shirts')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Formal Shirts</button>
-          <button onclick="quickFilterDepartment('men', 'casual-shirts')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Casual Shirts</button>
-          <button onclick="quickFilterDepartment('men', 'trousers')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Chinos &amp; Trousers</button>
-          <button onclick="quickFilterDepartment('men', 'denim')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Selvedge Jeans</button>
-          <button onclick="quickFilterDepartment('men', 'ethnic')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Kurta Pajama Sets</button>
-        </div>
       </div>
 
-      <!-- 2. Women's Department & Subcategories -->
-      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="flex items-center space-x-3 w-48">
-          <div class="w-10 h-10 bg-rose-600 text-white rounded-2xl flex items-center justify-center font-black">👗</div>
-          <div>
-            <h4 class="text-sm font-black text-neutral-900">Women's Studio</h4>
-            <p class="text-[10px] text-neutral-500">Sarees, kurtis &amp; western</p>
+      <!-- 2. WOMEN'S COMPLETE STUDIO -->
+      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3 border-b pb-3">
+            <div class="w-10 h-10 bg-rose-600 text-white rounded-2xl flex items-center justify-center font-black">👗</div>
+            <div>
+              <h4 class="text-sm font-black text-neutral-900">Women's Studio</h4>
+              <p class="text-[10px] text-neutral-500">Sarees, Ethnic &amp; Western</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Royal Sarees &amp; Ethnic</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('women', 'silk-sarees')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Kanjivaram Silk</button>
+              <button onclick="quickFilterDepartment('women', 'banarasi')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Banarasi Zari</button>
+              <button onclick="quickFilterDepartment('women', 'chanderi')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Chanderi Cotton</button>
+              <button onclick="quickFilterDepartment('women', 'anarkalis')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Flared Anarkalis</button>
+              <button onclick="quickFilterDepartment('women', 'kurtis')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Chikankari Kurtis</button>
+              <button onclick="quickFilterDepartment('women', 'lehengas')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Bridal Lehengas</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Western &amp; Fusion</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('women', 'dresses')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Maxi Dresses</button>
+              <button onclick="quickFilterDepartment('women', 'coords')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Co-ord Sets</button>
+              <button onclick="quickFilterDepartment('women', 'tops')" class="px-2.5 py-1 bg-neutral-50 hover:bg-rose-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Floral Tops</button>
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="quickFilterDepartment('women', 'silk-sarees')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Kanjivaram Silk Sarees</button>
-          <button onclick="quickFilterDepartment('women', 'banarasi')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Banarasi Zari Sarees</button>
-          <button onclick="quickFilterDepartment('women', 'anarkalis')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Flared Anarkalis</button>
-          <button onclick="quickFilterDepartment('women', 'kurtis')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Chikankari Kurtis</button>
-          <button onclick="quickFilterDepartment('women', 'western')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Western Party Dresses</button>
-        </div>
       </div>
 
-      <!-- 3. Kids' Zone & Subcategories -->
-      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="flex items-center space-x-3 w-48">
-          <div class="w-10 h-10 bg-amber-500 text-white rounded-2xl flex items-center justify-center font-black">🧒</div>
-          <div>
-            <h4 class="text-sm font-black text-neutral-900">Kids' Universe</h4>
-            <p class="text-[10px] text-neutral-500">Boys, girls &amp; infant wear</p>
+      <!-- 3. KIDS' COMPLETE UNIVERSE -->
+      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3 border-b pb-3">
+            <div class="w-10 h-10 bg-amber-500 text-white rounded-2xl flex items-center justify-center font-black">🧒</div>
+            <div>
+              <h4 class="text-sm font-black text-neutral-900">Kids' Universe</h4>
+              <p class="text-[10px] text-neutral-500">Boys, Girls &amp; Infants</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Boys Collection</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('kids', 'boys-ethnic')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Sherwani Sets</button>
+              <button onclick="quickFilterDepartment('kids', 'boys-kurta')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Kurta Pyjama</button>
+              <button onclick="quickFilterDepartment('kids', 'boys-casual')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Shirts &amp; Jeans</button>
+              <button onclick="quickFilterDepartment('kids', 'boys-suits')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Party Blazers</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Girls &amp; Infants</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('kids', 'girls-frocks')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Princess Frocks</button>
+              <button onclick="quickFilterDepartment('kids', 'pattu-pavadai')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Pattu Pavadai</button>
+              <button onclick="quickFilterDepartment('kids', 'girls-lehenga')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Lehenga Cholis</button>
+              <button onclick="quickFilterDepartment('kids', 'infants')" class="px-2.5 py-1 bg-neutral-50 hover:bg-amber-500 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Baby Rompers</button>
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="quickFilterDepartment('kids', 'boys-ethnic')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Boys Royal Sherwanis</button>
-          <button onclick="quickFilterDepartment('kids', 'boys-casual')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Boys Shirts &amp; Jeans</button>
-          <button onclick="quickFilterDepartment('kids', 'girls-frocks')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Girls Tulle Frocks</button>
-          <button onclick="quickFilterDepartment('kids', 'pattu-pavadai')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Traditional Pattu Pavadai</button>
-        </div>
       </div>
 
-      <!-- 4. Footwear Hub & Subcategories -->
-      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div class="flex items-center space-x-3 w-48">
-          <div class="w-10 h-10 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-black">👟</div>
-          <div>
-            <h4 class="text-sm font-black text-neutral-900">Footwear Hub</h4>
-            <p class="text-[10px] text-neutral-500">Sneakers, heels &amp; formals</p>
+      <!-- 4. FOOTWEAR MALL -->
+      <div class="bg-white p-5 rounded-3xl border border-neutral-200 shadow-sm flex flex-col justify-between space-y-4">
+        <div class="space-y-3">
+          <div class="flex items-center space-x-3 border-b pb-3">
+            <div class="w-10 h-10 bg-blue-600 text-white rounded-2xl flex items-center justify-center font-black">👟</div>
+            <div>
+              <h4 class="text-sm font-black text-neutral-900">Footwear Hub</h4>
+              <p class="text-[10px] text-neutral-500">Sneakers, Formals &amp; Heels</p>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Men's Footwear</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('footwear', 'running-sneakers')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Air Running Shoes</button>
+              <button onclick="quickFilterDepartment('footwear', 'formal-shoes')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Oxford Formals</button>
+              <button onclick="quickFilterDepartment('footwear', 'loafers')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Leather Loafers</button>
+            </div>
+          </div>
+
+          <div class="space-y-2">
+            <span class="text-[10px] font-black uppercase tracking-wider text-rose-600">Women's Footwear</span>
+            <div class="flex flex-wrap gap-1.5">
+              <button onclick="quickFilterDepartment('footwear', 'block-heels')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Block Heels</button>
+              <button onclick="quickFilterDepartment('footwear', 'stilettos')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Stilettos</button>
+              <button onclick="quickFilterDepartment('footwear', 'kolhapuris')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Kolhapuri Flats</button>
+              <button onclick="quickFilterDepartment('footwear', 'wedges')" class="px-2.5 py-1 bg-neutral-50 hover:bg-blue-600 hover:text-white rounded-lg text-[11px] font-semibold border border-neutral-200">Comfort Wedges</button>
+            </div>
           </div>
         </div>
-        <div class="flex flex-wrap gap-2">
-          <button onclick="quickFilterDepartment('footwear', 'running-sneakers')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Air Running Sneakers</button>
-          <button onclick="quickFilterDepartment('footwear', 'formal-shoes')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Men's Leather Oxfords</button>
-          <button onclick="quickFilterDepartment('footwear', 'block-heels')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Women's Block Heels</button>
-          <button onclick="quickFilterDepartment('footwear', 'kolhapuris')" class="subcat-chip px-3 py-1.5 bg-neutral-50 hover:bg-rose-50 hover:text-rose-600 rounded-xl text-xs font-bold border border-neutral-200 transition">Ethnic Kolhapuri Flats</button>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- FESTIVAL & SEASONAL ADVERTISING BANNER -->
-  <section class="max-w-7xl mx-auto px-4 sm:px-8 py-4">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      
-      <!-- Festive Banner Left -->
-      <div class="bg-gradient-to-r from-neutral-900 to-rose-950 rounded-3xl p-8 text-white flex justify-between items-center relative overflow-hidden shadow-xl">
-        <div class="space-y-2 z-10">
-          <span class="bg-rose-600 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full">Wedding Season</span>
-          <h3 class="text-2xl font-black">Bridal Sarees &amp; Sherwanis</h3>
-          <p class="text-neutral-300 text-xs">Direct wholesale discounts up to 50% on all sets.</p>
-          <button onclick="setMainCategory('women'); scrollToCatalog();" class="mt-2 bg-white text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-rose-600 hover:text-white transition">Explore Collection</button>
-        </div>
-        <div class="w-24 h-24 bg-rose-500/20 rounded-full blur-2xl absolute -right-4 -bottom-4"></div>
-      </div>
-
-      <!-- Footwear Flash Deal Right -->
-      <div class="bg-gradient-to-r from-neutral-900 to-blue-950 rounded-3xl p-8 text-white flex justify-between items-center relative overflow-hidden shadow-xl">
-        <div class="space-y-2 z-10">
-          <span class="bg-blue-600 text-white text-[9px] font-black uppercase tracking-widest px-2.5 py-1 rounded-full">Sneaker Fest</span>
-          <h3 class="text-2xl font-black">Flat ₹500 OFF On 2 Pairs</h3>
-          <p class="text-neutral-300 text-xs">High cushion marathon &amp; daily wear sneakers.</p>
-          <button onclick="setMainCategory('footwear'); scrollToCatalog();" class="mt-2 bg-white text-black px-4 py-2 rounded-xl text-xs font-bold hover:bg-blue-600 hover:text-white transition">Shop Footwear</button>
-        </div>
-        <div class="w-24 h-24 bg-blue-500/20 rounded-full blur-2xl absolute -right-4 -bottom-4"></div>
       </div>
 
     </div>
@@ -264,7 +298,7 @@
           <button onclick="resetAllFilters()" class="text-xs text-rose-600 font-bold hover:underline">Reset All</button>
         </div>
 
-        <!-- 1. Max Price Range Slider -->
+        <!-- 1. Max Budget Slider -->
         <div class="space-y-2">
           <div class="flex justify-between text-xs font-bold">
             <label class="text-neutral-600">Max Budget:</label>
@@ -273,10 +307,10 @@
           <input type="range" id="priceSlider" min="500" max="3500" step="100" value="3500" oninput="applyFilters()" class="w-full accent-rose-600 cursor-pointer">
         </div>
 
-        <!-- 2. Size Filter Chips -->
+        <!-- 2. Size Matrix Filter -->
         <div class="space-y-2">
           <label class="text-xs font-bold text-neutral-700 block">Filter By Size:</label>
-          <div class="flex flex-wrap gap-1.5" id="sizeFilterContainer">
+          <div class="flex flex-wrap gap-1.5">
             <button onclick="toggleSizeFilter('S')" class="size-filter-btn px-2.5 py-1 text-[11px] rounded-lg border font-bold border-neutral-200">S</button>
             <button onclick="toggleSizeFilter('M')" class="size-filter-btn px-2.5 py-1 text-[11px] rounded-lg border font-bold border-neutral-200">M</button>
             <button onclick="toggleSizeFilter('L')" class="size-filter-btn px-2.5 py-1 text-[11px] rounded-lg border font-bold border-neutral-200">L</button>
@@ -287,7 +321,7 @@
           </div>
         </div>
 
-        <!-- 3. Sort Filter -->
+        <!-- 3. Sort Order -->
         <div class="space-y-2">
           <label class="text-xs font-bold text-neutral-700 block">Sort Catalog:</label>
           <select id="sortSelector" onchange="applyFilters()" class="w-full bg-neutral-50 border border-neutral-200 text-xs font-bold rounded-xl p-2.5 focus:outline-none focus:border-black">
@@ -352,7 +386,7 @@
           <button onclick="toggleCart()" class="text-neutral-400 hover:text-black text-2xl font-bold">&times;</button>
         </div>
         <div id="cartItemList" class="divide-y divide-neutral-100 my-4 max-h-[50vh] overflow-y-auto pr-1">
-          <!-- Cart Items Injected -->
+          <!-- Cart Items -->
         </div>
 
         <!-- Coupon System -->
@@ -470,7 +504,7 @@
             <span class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></span>
             AS FASHIONS — Private Orders CRM
           </h2>
-          <p class="text-[11px] text-neutral-400">Restricted Admin Stream</p>
+          <p class="text-[11px] text-neutral-400">Restricted Store Administration</p>
         </div>
         <button onclick="closeAdminOrdersModal()" class="text-neutral-400 hover:text-white text-2xl font-bold">&times;</button>
       </div>
@@ -491,7 +525,7 @@
         <p class="text-xs text-neutral-500 mt-1">Complete Men's, Women's, Kids' &amp; Footwear Shopping</p>
       </div>
 
-      <!-- Secret Admin Trigger Link in Footer -->
+      <!-- Secret Admin Trigger Link -->
       <button onclick="promptAdminPin()" class="text-[11px] text-neutral-600 hover:text-neutral-300 font-bold uppercase tracking-wider transition">
         🔒 Store Admin Login
       </button>
@@ -500,27 +534,32 @@
 
   <!-- CORE JAVASCRIPT ENGINE -->
   <script>
-    // FULL EXPANDED MALL CATALOG
+    // EXPANDED MULTI-CATEGORY PRODUCTS CATALOG
     const products = [
-      // Men
-      { id: "M101", name: "Men's Luxury Italian Cotton Formal Shirt", category: "men", subCategory: "formal-shirts", price: 899, mrp: 1699, rating: 4.9, reviews: 240, tag: "Best Seller", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], colors: ["#ffffff", "#0284c7"], desc: "100% Breathable Egyptian cotton tailored slim fit." },
-      { id: "M102", name: "Men's Vintage Washed Casual Cotton Shirt", category: "men", subCategory: "casual-shirts", price: 799, mrp: 1499, rating: 4.7, reviews: 110, tag: "Popular", image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", sizes: ["S", "M", "L", "XL"], colors: ["#3b82f6"], desc: "Soft-touch pre-washed casual shirt." },
-      { id: "M103", name: "Men's Slim Fit Stretch Chino Trousers", category: "men", subCategory: "trousers", price: 1099, mrp: 2199, rating: 4.8, reviews: 98, tag: "Trending", image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1542272604-780c96856484?w=700&auto=format&fit=crop&q=80", sizes: ["30", "32", "34", "36"], colors: ["#78716c"], desc: "Flexible stretch mobility chinos." },
-      { id: "M104", name: "Men's Royal Silk Blend Kurta Pajama Set", category: "men", subCategory: "ethnic", price: 1499, mrp: 2999, rating: 5.0, reviews: 142, tag: "Festive", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], colors: ["#b45309"], desc: "Grand jacquard embroidered festive kurta set." },
+      // Men's Topwear & Bottoms
+      { id: "M101", name: "Men's Luxury Italian Cotton Formal Shirt", category: "men", subCategory: "formal-shirts", price: 899, mrp: 1699, rating: 4.9, reviews: 240, tag: "Best Seller", image: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1602810318383-e386cc2a3ccf?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], desc: "100% Breathable Egyptian cotton tailored slim fit." },
+      { id: "M102", name: "Men's Vintage Washed Casual Cotton Shirt", category: "men", subCategory: "casual-shirts", price: 799, mrp: 1499, rating: 4.7, reviews: 110, tag: "Popular", image: "https://images.unsplash.com/photo-1603252109303-2751441dd157?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", sizes: ["S", "M", "L", "XL"], desc: "Soft-touch pre-washed casual shirt." },
+      { id: "M103", name: "Men's Streetwear Oversized Drop-Shoulder Tee", category: "men", subCategory: "t-shirts", price: 599, mrp: 1199, rating: 4.8, reviews: 310, tag: "Trending", image: "https://images.unsplash.com/photo-1521572267360-ee0c2909d518?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1503342217505-b0a15ec3261c?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], desc: "240 GSM heavy cotton oversized fit." },
+      { id: "M104", name: "Men's Slim Fit Stretch Chino Trousers", category: "men", subCategory: "chinos", price: 1099, mrp: 2199, rating: 4.8, reviews: 98, tag: "Trending", image: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1542272604-780c96856484?w=700&auto=format&fit=crop&q=80", sizes: ["30", "32", "34", "36"], desc: "Flexible stretch mobility chinos." },
+      { id: "M105", name: "Men's Heavyweight Raw Selvedge Denim Jeans", category: "men", subCategory: "denim", price: 1299, mrp: 2499, rating: 4.9, reviews: 140, tag: "Must Have", image: "https://images.unsplash.com/photo-1542272604-780c96856484?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1473966968600-fa801b869a1a?w=700&auto=format&fit=crop&q=80", sizes: ["30", "32", "34", "36"], desc: "Classic dark wash straight fit jeans." },
+      { id: "M106", name: "Men's Royal Silk Blend Kurta Pajama Set", category: "men", subCategory: "ethnic", price: 1499, mrp: 2999, rating: 5.0, reviews: 142, tag: "Festive", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1596755094514-f87e34085b2c?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], desc: "Grand jacquard embroidered festive kurta set." },
       
-      // Women
-      { id: "W201", name: "Women's Pure Zari Banarasi Silk Saree", category: "women", subCategory: "banarasi", price: 1599, mrp: 3499, rating: 5.0, reviews: 310, tag: "Exclusive", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80", sizes: ["Free Size"], colors: ["#e11d48"], desc: "Handcrafted zari woven body with heavy pallu." },
-      { id: "W202", name: "Women's Pure Kanjivaram Bridal Silk Saree", category: "women", subCategory: "silk-sarees", price: 2199, mrp: 4999, rating: 4.9, reviews: 190, tag: "Bridal Special", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80", sizes: ["Free Size"], colors: ["#15803d"], desc: "Traditional temple border rich bridal silk." },
-      { id: "W203", name: "Women's Embroidered Flared Anarkali Set", category: "women", subCategory: "anarkalis", price: 1299, mrp: 2599, rating: 4.8, reviews: 145, tag: "Popular", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700&auto=format&fit=crop&q=80", sizes: ["S", "M", "L", "XL"], colors: ["#fb7185"], desc: "Flowing georgette with dupatta and cigarette pants." },
-      { id: "W204", name: "Women's Handcrafted Chikankari Kurti", category: "women", subCategory: "kurtis", price: 899, mrp: 1799, rating: 4.7, reviews: 88, tag: "Trending", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], colors: ["#38bdf8"], desc: "Lucknowi thread embroidery on modal cotton." },
+      // Women's Studio
+      { id: "W201", name: "Women's Pure Zari Banarasi Silk Saree", category: "women", subCategory: "banarasi", price: 1599, mrp: 3499, rating: 5.0, reviews: 310, tag: "Exclusive", image: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80", sizes: ["Free Size"], desc: "Handcrafted zari woven body with heavy pallu." },
+      { id: "W202", name: "Women's Pure Kanjivaram Bridal Silk Saree", category: "women", subCategory: "silk-sarees", price: 2199, mrp: 4999, rating: 4.9, reviews: 190, tag: "Bridal Special", image: "https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=700&auto=format&fit=crop&q=80", sizes: ["Free Size"], desc: "Traditional temple border rich bridal silk." },
+      { id: "W203", name: "Women's Embroidered Flared Anarkali Set", category: "women", subCategory: "anarkalis", price: 1299, mrp: 2599, rating: 4.8, reviews: 145, tag: "Popular", image: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700&auto=format&fit=crop&q=80", sizes: ["S", "M", "L", "XL"], desc: "Flowing georgette with dupatta and cigarette pants." },
+      { id: "W204", name: "Women's Handcrafted Chikankari Kurti", category: "women", subCategory: "kurtis", price: 899, mrp: 1799, rating: 4.7, reviews: 88, tag: "Trending", image: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1583391733956-3750e0ff4e8b?w=700&auto=format&fit=crop&q=80", sizes: ["M", "L", "XL"], desc: "Lucknowi thread embroidery on modal cotton." },
+      { id: "W205", name: "Women's Floral Tiered Georgette Maxi Dress", category: "women", subCategory: "dresses", price: 999, mrp: 1899, rating: 4.8, reviews: 120, tag: "Western", image: "https://images.unsplash.com/photo-1496747611176-843222e1e57c?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1572804013309-59a88b7e92f1?w=700&auto=format&fit=crop&q=80", sizes: ["S", "M", "L"], desc: "Boho chic floral maxi dress with elasticated waist." },
       
-      // Kids
-      { id: "K301", name: "Boys' Royal Velvet Sherwani Ensemble", category: "kids", subCategory: "boys-ethnic", price: 849, mrp: 1599, rating: 4.9, reviews: 78, tag: "Festive", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=700&auto=format&fit=crop&q=80", sizes: ["3-4Y", "5-6Y", "7-8Y"], colors: ["#1e3a8a"], desc: "Micro velvet coat with cotton lining." },
-      { id: "K302", name: "Girls' Layered Sparkle Princess Frock", category: "kids", subCategory: "girls-frocks", price: 799, mrp: 1499, rating: 4.9, reviews: 160, tag: "Trending", image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=700&auto=format&fit=crop&q=80", sizes: ["2-3Y", "4-5Y", "6-7Y"], colors: ["#f43f5e"], desc: "Layered tulle skirt with sequin bodice." },
+      // Kids' Universe
+      { id: "K301", name: "Boys' Royal Velvet Sherwani Ensemble", category: "kids", subCategory: "boys-ethnic", price: 849, mrp: 1599, rating: 4.9, reviews: 78, tag: "Festive", image: "https://images.unsplash.com/photo-1519238263530-99bdd11df2ea?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1503919545889-aef636e10ad4?w=700&auto=format&fit=crop&q=80", sizes: ["3-4Y", "5-6Y", "7-8Y"], desc: "Micro velvet coat with cotton lining." },
+      { id: "K302", name: "Girls' Layered Sparkle Princess Frock", category: "kids", subCategory: "girls-frocks", price: 799, mrp: 1499, rating: 4.9, reviews: 160, tag: "Trending", image: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=700&auto=format&fit=crop&q=80", sizes: ["2-3Y", "4-5Y", "6-7Y"], desc: "Layered tulle skirt with sequin bodice." },
+      { id: "K303", name: "Girls' Traditional Pure Silk Pattu Pavadai", category: "kids", subCategory: "pattu-pavadai", price: 1199, mrp: 2199, rating: 5.0, reviews: 90, tag: "Heritage", image: "https://images.unsplash.com/photo-1518831959646-742c3a14ebf7?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1622290291468-a28f7a7dc6a8?w=700&auto=format&fit=crop&q=80", sizes: ["2-3Y", "4-5Y", "6-7Y", "8-9Y"], desc: "Authentic jacquard zari traditional skirt and top." },
       
-      // Footwear
-      { id: "F401", name: "Air Cushion Lightweight Sports Running Shoes", category: "footwear", subCategory: "running-sneakers", price: 1499, mrp: 2999, rating: 4.9, reviews: 420, tag: "Hot Seller", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=700&auto=format&fit=crop&q=80", sizes: ["7", "8", "9", "10"], colors: ["#ef4444"], desc: "Breathable knit upper with high shock absorption." },
-      { id: "F402", name: "Women's Comfort Block Heel Ankle Sandals", category: "footwear", subCategory: "block-heels", price: 899, mrp: 1799, rating: 4.6, reviews: 110, tag: "Top Rated", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=700&auto=format&fit=crop&q=80", sizes: ["5", "6", "7", "8"], colors: ["#d97706"], desc: "2.5 inch anti-skid stable block heels." }
+      // Footwear Hub
+      { id: "F401", name: "Air Cushion Lightweight Sports Running Shoes", category: "footwear", subCategory: "running-sneakers", price: 1499, mrp: 2999, rating: 4.9, reviews: 420, tag: "Hot Seller", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1608231387042-66d1773070a5?w=700&auto=format&fit=crop&q=80", sizes: ["7", "8", "9", "10"], desc: "Breathable knit upper with high shock absorption." },
+      { id: "F402", name: "Women's Comfort Block Heel Ankle Sandals", category: "footwear", subCategory: "block-heels", price: 899, mrp: 1799, rating: 4.6, reviews: 110, tag: "Top Rated", image: "https://images.unsplash.com/photo-1543163521-1bf539c55dd2?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1535043934128-cf0b28d52f95?w=700&auto=format&fit=crop&q=80", sizes: ["5", "6", "7", "8"], desc: "2.5 inch anti-skid stable block heels." },
+      { id: "F403", name: "Men's Handcrafted Oxford Brogue Formal Shoes", category: "footwear", subCategory: "formal-shoes", price: 1799, mrp: 3499, rating: 4.9, reviews: 86, tag: "Luxury", image: "https://images.unsplash.com/photo-1533867617858-e7b97e060509?w=700&auto=format&fit=crop&q=80", hoverImage: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?w=700&auto=format&fit=crop&q=80", sizes: ["7", "8", "9", "10"], desc: "Premium genuine finish leather formal lace-ups." }
     ];
 
     let currentMainCat = 'all';
@@ -902,7 +941,7 @@
 
     function closeSuccessModal() { document.getElementById('successModal').classList.add('hidden'); }
 
-    // SECRET PIN PROTECTED ORDERS CRM
+    // SECRET PIN-PROTECTED ORDERS CRM
     function promptAdminPin() {
       const pin = prompt("Enter 4-Digit Admin Security PIN:");
       if(pin === "1234") {
@@ -912,7 +951,6 @@
       }
     }
 
-    // Keyboard shortcut for Admin: Ctrl + Shift + A
     window.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'a') {
         promptAdminPin();
@@ -982,7 +1020,7 @@
 
     function closeAdminOrdersModal() { document.getElementById('adminOrdersModal').classList.add('hidden'); }
 
-    // INITIAL LAUNCH
+    // INITIAL LOAD
     initHeroSlider();
     applyFilters();
   </script>
